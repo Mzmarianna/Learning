@@ -45,6 +45,19 @@ export default function FreeGuidePage() {
         source: 'free-guide-page',
       });
       
+      // Send automated email with free guide
+      try {
+        const { sendFreeGuideEmail } = await import('../lib/email/automation');
+        await sendFreeGuideEmail(
+          email,
+          childAge ? parseInt(childAge) : undefined,
+          struggle || undefined
+        );
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // Don't fail the form submission if email fails
+      }
+      
       toast.success('Check your email! Your guide is on the way. 🎁');
       
       // Redirect to thank you page

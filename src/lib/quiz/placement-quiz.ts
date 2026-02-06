@@ -299,6 +299,27 @@ export async function completeQuiz(attemptId: string): Promise<{
 
     if (updateError) throw updateError;
 
+    // Send email with results if email provided
+    if (attempt.parent_email) {
+      try {
+        const { sendQuizResultsEmail } = await import('../email/automation');
+        await sendQuizResultsEmail(
+          attempt.parent_email,
+          attempt.student_name,
+          recommendedTier,
+          {
+            reading: readingScore,
+            math: mathScore,
+            criticalThinking: criticalThinkingScore,
+            overall: accuracyPercentage
+          }
+        );
+      } catch (emailError) {
+        console.error('Error sending quiz results email:', emailError);
+        // Don't fail the quiz completion if email fails
+      }
+    }
+
     return {
       recommendedTier,
       results: {

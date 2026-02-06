@@ -296,32 +296,52 @@ export default function PlacementResultsPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                onClick={() => window.location.href = `https://yourstore.myshopify.com/products/explorer-plan?student=${attempt.student_name}&tier=${attempt.recommended_tier}`}
+                onClick={() => navigate('/pricing')}
                 size="lg"
-                className="bg-white text-purple-600 hover:bg-gray-100"
+                className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6"
               >
                 <CreditCard className="w-5 h-5 mr-2" />
-                Subscribe Now - $29/month
+                View Pricing & Enroll
               </Button>
 
-              {attempt.parent_email && (
-                <Button
-                  onClick={() => alert('Results sent to ' + attempt.parent_email)}
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  Email Me Results
-                </Button>
-              )}
+              <Button
+                onClick={() => navigate('/free-guide')}
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              >
+                <Download className="w-5 h-5 mr-2" />
+                Get Free Parent Guide
+              </Button>
             </div>
 
             <p className="text-sm text-purple-100 mt-4">
-              No credit card required to view results • 30-day money-back guarantee
+              🎁 Limited Time: First month 50% off • 30-day money-back guarantee
             </p>
           </Card>
         </motion.div>
+
+        {/* Email Results Section */}
+        {attempt.parent_email && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="mt-6"
+          >
+            <Card className="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 border-2 border-teal-200">
+              <div className="text-center">
+                <Mail className="w-12 h-12 text-teal-600 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Results Emailed to {attempt.parent_email}
+                </h3>
+                <p className="text-gray-700">
+                  Check your inbox for a detailed PDF report and personalized recommendations!
+                </p>
+              </div>
+            </Card>
+          </motion.div>
+        )}
 
         {/* Footer Actions */}
         <div className="mt-8 text-center">

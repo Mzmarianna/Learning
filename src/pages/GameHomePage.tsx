@@ -2,12 +2,18 @@ import { useNavigate } from 'react-router';
 import { Crown, Sparkles, Gamepad2, Heart, Brain, Zap, Star, Trophy, Rocket, Play, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import StickyCTA from '../components/marketing/StickyCTA';
+import TrustSignals from '../components/marketing/TrustSignals';
+import ExitIntentPopup from '../components/marketing/ExitIntentPopup';
 
 export default function GameHomePage() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-100 via-pink-50 to-cyan-50">
+      {/* Marketing Components */}
+      <StickyCTA />
+      <ExitIntentPopup />
       {/* Navigation Bar - Game Style */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b-4 border-purple-400 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -198,6 +204,9 @@ export default function GameHomePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Trust Signals - Social Proof */}
+      <TrustSignals />
 
       {/* How It Works - Game Interface Style */}
       <section className="py-20 px-4 bg-white/50 backdrop-blur-sm">
