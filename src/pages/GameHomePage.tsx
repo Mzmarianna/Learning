@@ -198,7 +198,8 @@ export default function GameHomePage() {
                 transition={{ delay: 1, duration: 0.5, type: "spring" }}
                 className="absolute -top-8 -right-12 bg-white rounded-2xl p-4 shadow-2xl border-4 border-purple-300 max-w-[200px]"
               >
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
+                {/* Speech bubble pointer - decorative only */}
+                <div aria-hidden="true" className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
                 <p className="text-purple-900 font-bold text-sm text-center">
                   Hi! I'm Wowl! 🦉
                   <br />
