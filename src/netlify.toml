@@ -38,6 +38,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com https://static.hotjar.com https://js.stripe.com; connect-src 'self' https://generativelanguage.googleapis.com https://api.resend.com https://connect.facebook.net https://api.ipify.org https://*.supabase.co https://wyclbrafklhvdyjpoeno.supabase.co https://api.stripe.com https://static.hotjar.com https://www.googletagmanager.com https://calendar.google.com; frame-src https://www.youtube.com https://www.figma.com https://js.stripe.com https://www.roblox.com; style-src 'self' 'unsafe-inline'"
 
 [[headers]]
   # Cache static assets for 1 year

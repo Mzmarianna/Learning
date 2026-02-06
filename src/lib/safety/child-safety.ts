@@ -386,12 +386,23 @@ export async function checkSessionLimits(studentId: string): Promise<{
  * Sanitize user-generated content for display
  */
 export function sanitizeContent(content: string): string {
-  // Remove potentially dangerous HTML/scripts
+  // Remove ALL HTML tags and dangerous content
   let sanitized = content
-    .replace(/<script[^>]*>.*?<\/script>/gi, '')
-    .replace(/<iframe[^>]*>.*?<\/iframe>/gi, '')
-    .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
-    .replace(/javascript:/gi, '');
+    // Remove all HTML tags completely
+    .replace(/<[^>]*>/g, '')
+    // Remove any javascript: protocol
+    .replace(/javascript\s*:/gi, '')
+    .replace(/data\s*:/gi, '')
+    .replace(/vbscript\s*:/gi, '')
+    // Remove event handlers
+    .replace(/on\w+\s*=/gi, '')
+    // Escape special characters to prevent XSS
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
 
   return sanitized;
 }
