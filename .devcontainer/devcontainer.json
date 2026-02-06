@@ -1,0 +1,8 @@
+{
+  "name": "Learning",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "settings": {
+    "git.autofetch": true
+  },
+  "postCreateCommand": "git config user.email 'mariannav920@gmail.com' && git config user.name 'Mzmarianna'"
+}
