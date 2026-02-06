@@ -55,7 +55,7 @@ export const PAYPAL_PLANS: PayPalPlan[] = [
     description: 'For serious learners ready to level up',
     amount: 29,
     interval: 'month',
-    paypalPlanId: 'P-WARRIOR-MONTHLY', // Replace with actual PayPal Plan ID
+    paypalPlanId: "", // TODO: Replace with actual PayPal Plan ID from dashboard, // Replace with actual PayPal Plan ID
     planTier: 'warrior',
     features: [
       'Unlimited quests & challenges',
@@ -73,7 +73,7 @@ export const PAYPAL_PLANS: PayPalPlan[] = [
     description: 'Save $70/year',
     amount: 279,
     interval: 'year',
-    paypalPlanId: 'P-WARRIOR-ANNUAL',
+    paypalPlanId: "", // TODO: Replace with actual PayPal Plan ID,
     planTier: 'warrior',
     features: [
       'Unlimited quests & challenges',
@@ -91,7 +91,7 @@ export const PAYPAL_PLANS: PayPalPlan[] = [
     description: 'Advanced curriculum with 1-on-1 support',
     amount: 79,
     interval: 'month',
-    paypalPlanId: 'P-SCHOLAR-MONTHLY',
+    paypalPlanId: "", // TODO: Replace with actual PayPal Plan ID,
     planTier: 'scholar',
     features: [
       'Everything in Warrior',
@@ -109,7 +109,7 @@ export const PAYPAL_PLANS: PayPalPlan[] = [
     description: 'Save $170/year',
     amount: 779,
     interval: 'year',
-    paypalPlanId: 'P-SCHOLAR-ANNUAL',
+    paypalPlanId: "", // TODO: Replace with actual PayPal Plan ID,
     planTier: 'scholar',
     features: [
       'Everything in Warrior',
@@ -127,7 +127,7 @@ export const PAYPAL_PLANS: PayPalPlan[] = [
     description: 'Up to 4 students, unlimited everything',
     amount: 149,
     interval: 'month',
-    paypalPlanId: 'P-LEGEND-MONTHLY',
+    paypalPlanId: "", // TODO: Replace with actual PayPal Plan ID,
     planTier: 'legend',
     features: [
       'Everything in Scholar',
@@ -145,7 +145,7 @@ export const PAYPAL_PLANS: PayPalPlan[] = [
     description: 'Save $340/year',
     amount: 1449,
     interval: 'year',
-    paypalPlanId: 'P-LEGEND-ANNUAL',
+    paypalPlanId: "", // TODO: Replace with actual PayPal Plan ID,
     planTier: 'legend',
     features: [
       'Everything in Scholar',

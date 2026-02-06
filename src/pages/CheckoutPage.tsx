@@ -126,9 +126,9 @@ export default function CheckoutPage() {
         return;
       }
 
-      // Validate PayPal Plan ID exists
+      // Validate PayPal Plan ID exists and is properly configured
       const paypalPlanId = selectedPlan.paypalPlanId;
-      if (!paypalPlanId || paypalPlanId.startsWith('P-PLACEHOLDER') || paypalPlanId.includes('PLACEHOLDER')) {
+      if (!paypalPlanId || paypalPlanId === '') {
         toast.error('PayPal subscription plan is not configured yet. Please contact support or use another payment method.');
         setIsProcessing(false);
         return;

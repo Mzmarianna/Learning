@@ -166,6 +166,10 @@ function getWarriorsProgramTemplate(data: WarriorsSequenceData): string {
 }
 
 function getWarriorsBookUpsellTemplate(data: WarriorsSequenceData): string {
+  const book = BOOK_PRICING.warriors;
+  const regularPrice = formatBookPrice(book.regularPrice);
+  const memberPrice = formatBookPrice(book.memberPrice);
+  
   return `
     <!DOCTYPE html>
     <html>
@@ -276,6 +280,10 @@ function getWarriorsSuccessTemplate(data: WarriorsSequenceData): string {
 }
 
 function getWarriorsBookReminderTemplate(data: WarriorsSequenceData): string {
+  const book = BOOK_PRICING.warriors;
+  const regularPrice = formatBookPrice(book.regularPrice);
+  const memberPrice = formatBookPrice(book.memberPrice);
+  
   return `
     <!DOCTYPE html>
     <html>

@@ -178,6 +178,10 @@ function getMathResourcesTemplate(data: MathSequenceData): string {
 }
 
 function getMathBookUpsellTemplate(data: MathSequenceData): string {
+  const book = BOOK_PRICING.math;
+  const regularPrice = formatBookPrice(book.regularPrice);
+  const memberPrice = formatBookPrice(book.memberPrice);
+  
   return `
     <!DOCTYPE html>
     <html>
@@ -287,6 +291,10 @@ function getMathSuccessTemplate(data: MathSequenceData): string {
 }
 
 function getMathBookReminderTemplate(data: MathSequenceData): string {
+  const book = BOOK_PRICING.math;
+  const regularPrice = formatBookPrice(book.regularPrice);
+  const memberPrice = formatBookPrice(book.memberPrice);
+  
   return `
     <!DOCTYPE html>
     <html>
