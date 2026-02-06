@@ -4,8 +4,8 @@ import App from '../App';
 import '../styles/globals.css';
 import { initializeGemini } from '../lib/ai/gemini-service';
 
-// Initialize Gemini AI with your API key
-const GEMINI_API_KEY = 'AIzaSyBPC4OLxlUJODWpuOWby3E8X_LKVyaO6_k';
+// Initialize Gemini AI with API key from environment variable
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 if (GEMINI_API_KEY) {
   initializeGemini(GEMINI_API_KEY);

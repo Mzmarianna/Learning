@@ -70,7 +70,14 @@ const ENV_VARS: RequiredEnv[] = [
     key: 'SHOPIFY_STORE_URL',
     description: 'Shopify store URL',
     required: 'optional',
-    validate: (val) => val.includes('.myshopify.com') || val.includes('shopify.com'),
+    validate: (val) => {
+      try {
+        const url = new URL(val);
+        return url.hostname.endsWith('.myshopify.com') || url.hostname.endsWith('shopify.com');
+      } catch {
+        return false;
+      }
+    },
   },
   {
     key: 'SHOPIFY_ADMIN_API_TOKEN',

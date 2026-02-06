@@ -5,6 +5,7 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import StickyCTA from '../components/marketing/StickyCTA';
 import TrustSignals from '../components/marketing/TrustSignals';
 import ExitIntentPopup from '../components/marketing/ExitIntentPopup';
+import wowlAvatar from '../assets/64d5bb1a100e68b30321f1f4e7826d3c45d21e17.png';
 
 export default function GameHomePage() {
   const navigate = useNavigate();
@@ -18,11 +19,10 @@ export default function GameHomePage() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b-4 border-purple-400 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+            {/* Logo with Wowl */}
             <div className="flex items-center gap-3">
               <div className="relative">
-                <Crown className="size-10 text-purple-600" strokeWidth={2.5} />
-                <Sparkles className="size-4 text-yellow-400 absolute -top-1 -right-1 animate-pulse" />
+                <img src={wowlAvatar} alt="Wowl the Owl" className="size-12 object-contain" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-title)' }}>
@@ -160,27 +160,102 @@ export default function GameHomePage() {
             </div>
           </motion.div>
 
-          {/* Right: Hero Image */}
+          {/* Right: Wowl the Owl - Site Mascot */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              type: "spring",
+              bounce: 0.4
+            }}
+            className="relative flex justify-center items-center"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:scale-105 transition-transform duration-300">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1752649936498-b565120b373e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGVkdWNhdG9yJTIwd29tYW4lMjB0ZWFjaGluZyUyMGNoaWxkcmVuJTIwdmlicmFudHxlbnwxfHx8fDE3NzAzMTY5OTV8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Mz. Marianna - Innovative EdTech Educator"
-                className="w-full h-[500px] object-cover"
-              />
-              {/* Overlay Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl border-2 border-purple-200">
-                <p className="text-purple-900 font-bold text-lg flex items-center gap-2">
-                  <Crown className="size-6 text-yellow-500" fill="currentColor" />
-                  "Every child is a genius waiting to be discovered."
+            {/* Wowl Container with Glow Effect */}
+            <div className="relative">
+              {/* Glow Effect Behind Wowl */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400/30 via-pink-400/30 to-cyan-400/30 rounded-full blur-3xl scale-110 animate-pulse" />
+              
+              {/* Wowl Image with Bounce Animation */}
+              <motion.div
+                animate={{ 
+                  y: [0, -20, 0],
+                  rotate: [-2, 2, -2]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="relative z-10"
+              >
+                <img 
+                  src={wowlAvatar} 
+                  alt="Wowl the Owl - Your Learning Companion" 
+                  className="w-[400px] h-[400px] object-contain drop-shadow-2xl"
+                />
+              </motion.div>
+
+              {/* Speech Bubble */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5, type: "spring" }}
+                className="absolute -top-8 -right-12 bg-white rounded-2xl p-4 shadow-2xl border-4 border-purple-300 max-w-[200px]"
+              >
+                {/* Speech bubble pointer - decorative only */}
+                <div aria-hidden="true" className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
+                <p className="text-purple-900 font-bold text-sm text-center">
+                  Hi! I'm Wowl! 🦉
+                  <br />
+                  <span className="text-pink-600">Let's learn together!</span>
                 </p>
-                <p className="text-purple-600 text-sm mt-1">— Mz. Marianna</p>
-              </div>
+              </motion.div>
+
+              {/* Floating Sparkles Around Wowl */}
+              <motion.div
+                animate={{ 
+                  rotate: 360,
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                }}
+                className="absolute top-1/4 -left-8 text-yellow-400"
+              >
+                <Sparkles className="size-8" fill="currentColor" />
+              </motion.div>
+
+              <motion.div
+                animate={{ 
+                  rotate: -360,
+                  scale: [1, 1.3, 1]
+                }}
+                transition={{ 
+                  rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                }}
+                className="absolute bottom-1/4 -right-8 text-pink-400"
+              >
+                <Star className="size-10" fill="currentColor" />
+              </motion.div>
+
+              <motion.div
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [0, 5, 0]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="absolute top-1/2 -right-12 text-cyan-400"
+              >
+                <Brain className="size-7" />
+              </motion.div>
             </div>
 
             {/* Floating Stats */}

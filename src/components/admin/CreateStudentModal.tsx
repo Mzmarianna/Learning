@@ -65,7 +65,25 @@ export default function CreateStudentModal({
   };
 
   const generateRandomPassword = () => {
-    const password = Math.random().toString(36).slice(-10) + 'A1!';
+    // Use crypto.getRandomValues for cryptographically secure random values
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+    const length = 12;
+    const array = new Uint8Array(length);
+    
+    if (window.crypto) {
+      window.crypto.getRandomValues(array);
+    } else {
+      // Fallback with multiple Math.random() calls (less secure but better than single call)
+      for (let i = 0; i < length; i++) {
+        array[i] = Math.floor(Math.random() * 256);
+      }
+    }
+    
+    let password = '';
+    for (let i = 0; i < length; i++) {
+      password += charset[array[i] % charset.length];
+    }
+    
     setFormData({ ...formData, password });
   };
 
