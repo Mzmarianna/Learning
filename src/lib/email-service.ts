@@ -3,7 +3,7 @@
  * Calls Supabase Edge Function which uses Resend
  */
 
-import { supabase } from './supabase';
+import { supabase } from './supabase/client';
 
 export interface EmailOptions {
   to: string | string[];

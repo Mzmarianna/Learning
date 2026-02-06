@@ -5,6 +5,12 @@ dist
 .idea
 .vscode
 
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.production
+.env.development
+
 # Built things
 _Debug/
 Compiled/

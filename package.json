@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@jsr/supabase__supabase-js": "^2.49.8",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-aspect-ratio": "^1.1.2",
@@ -53,6 +52,7 @@
     "react-router": "*",
     "react-router-dom": "*",
     "recharts": "^2.15.2",
+    "resend": "^6.9.1",
     "sonner": "^2.0.3",
     "tailwind-merge": "*",
     "vaul": "^1.1.2"

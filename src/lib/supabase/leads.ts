@@ -4,6 +4,7 @@
  */
 
 import { supabase } from './client';
+import { sendEbookDeliveryEmail } from '../email/ebook-delivery';
 
 export interface LeadCapture {
   id?: string;
@@ -41,12 +42,31 @@ export async function captureEmailLead(data: LeadCapture) {
       // If duplicate email (unique constraint), that's OK
       if (error.code === '23505') {
         console.log('Lead already exists:', data.email);
+        // Still send the e-book for returning visitors
+        try {
+          await sendEbookDeliveryEmail({ email: data.email });
+        } catch (emailError) {
+          console.error('Email send failed:', emailError);
+        }
         return { success: true, duplicate: true };
       }
       throw error;
     }
 
     console.log('✅ Lead captured:', lead);
+    
+    // Automatically send e-book delivery email
+    try {
+      await sendEbookDeliveryEmail({ 
+        email: data.email,
+        firstName: undefined // Could extract from form if we add a name field
+      });
+      console.log('✅ E-book delivery email sent to:', data.email);
+    } catch (emailError) {
+      console.error('❌ Email send failed (but lead was captured):', emailError);
+      // Don't fail the whole operation if email fails
+    }
+    
     return { success: true, data: lead };
   } catch (error) {
     console.error('❌ Error capturing lead:', error);
