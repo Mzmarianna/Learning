@@ -493,12 +493,23 @@ export function validatePassword(password: string): {
  * Generate random password
  */
 export function generateRandomPassword(length: number = 12): string {
+  // Use crypto.getRandomValues for cryptographically secure random values
   const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+  const array = new Uint8Array(length);
+  
+  // Use Web Crypto API for secure randomness
+  if (typeof window !== 'undefined' && window.crypto) {
+    window.crypto.getRandomValues(array);
+  } else if (typeof globalThis !== 'undefined' && globalThis.crypto) {
+    globalThis.crypto.getRandomValues(array);
+  } else {
+    // Fallback: throw error if crypto is not available
+    throw new Error('Secure random number generation is not available');
+  }
+  
   let password = '';
-
   for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    password += charset[randomIndex];
+    password += charset[array[i] % charset.length];
   }
 
   return password;

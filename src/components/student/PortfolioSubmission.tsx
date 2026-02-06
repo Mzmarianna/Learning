@@ -183,6 +183,12 @@ export default function PortfolioSubmission({
 
       setSelectedImage(file);
       const url = URL.createObjectURL(file);
+      // Validate that the URL is a blob URL (starts with blob:)
+      if (!url.startsWith('blob:')) {
+        URL.revokeObjectURL(url);
+        toast.error('Invalid image source');
+        return;
+      }
       setImagePreviewUrl(url);
       toast.success('Image selected! ✨');
     }
@@ -422,11 +428,13 @@ export default function PortfolioSubmission({
           ) : (
             <div className="space-y-4">
               <div className="relative rounded-xl overflow-hidden border-2 border-calm-border">
-                <img
-                  src={imagePreviewUrl}
-                  alt="Preview"
-                  className="w-full h-auto"
-                />
+                {imagePreviewUrl && imagePreviewUrl.startsWith('blob:') && (
+                  <img
+                    src={imagePreviewUrl}
+                    alt="Preview"
+                    className="w-full h-auto"
+                  />
+                )}
               </div>
               <div className="flex gap-3 justify-center">
                 <Button
