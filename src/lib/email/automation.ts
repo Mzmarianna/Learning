@@ -79,7 +79,7 @@ export async function sendQuizResultsEmail(
           </ul>
 
           <center>
-            <a href="${process.env.VITE_APP_URL || 'https://yoursite.com'}/pricing?tier=${tier}" class="cta-button">
+            <a href="${import.meta?.env?.VITE_APP_URL || 'https://mzmariannas-academy.com'}/pricing?tier=${tier}" class="cta-button">
               🚀 Start Learning Now - First Month 50% Off!
             </a>
           </center>
@@ -159,7 +159,7 @@ export async function sendFreeGuideEmail(email: string, childAge?: number, strug
           <p>Thank you for downloading our guide! I'm so excited to share these strategies with you.</p>
 
           <center>
-            <a href="${process.env.VITE_APP_URL || 'https://yoursite.com'}/downloads/genius-guide.pdf" class="cta-button">
+            <a href="${import.meta?.env?.VITE_APP_URL || 'https://mzmariannas-academy.com'}/downloads/genius-guide.pdf" class="cta-button">
               📥 Download Your Free Guide
             </a>
           </center>
@@ -185,7 +185,7 @@ export async function sendFreeGuideEmail(email: string, childAge?: number, strug
           </ul>
 
           <center>
-            <a href="${process.env.VITE_APP_URL || 'https://yoursite.com'}/placement-quiz" class="cta-button">
+            <a href="${import.meta?.env?.VITE_APP_URL || 'https://mzmariannas-academy.com'}/placement-quiz" class="cta-button">
               🎯 Take Free Quiz Now
             </a>
           </center>
@@ -264,7 +264,7 @@ export async function sendWelcomeEmail(email: string, studentName: string, tier:
             <strong>Step 1: Log In</strong>
             <p>Create your parent account and set up ${studentName}'s profile</p>
             <center>
-              <a href="${process.env.VITE_APP_URL || 'https://yoursite.com'}/login" class="cta-button">
+              <a href="${import.meta?.env?.VITE_APP_URL || 'https://mzmariannas-academy.com'}/login" class="cta-button">
                 Log In Now
               </a>
             </center>

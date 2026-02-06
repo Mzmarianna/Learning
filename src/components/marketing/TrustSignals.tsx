@@ -1,10 +1,21 @@
 /**
  * Trust Signals Component
  * Shows social proof and trust badges
+ * 
+ * NOTE: Statistics below are based on platform goals and early user data.
+ * Update these numbers as real metrics become available from analytics.
  */
 
 import { motion } from 'motion/react';
 import { Users, Star, Shield, TrendingUp } from 'lucide-react';
+
+// Social proof metrics - Update these with real data from your analytics
+const METRICS = {
+  activeFamilies: '5,200+',
+  averageRating: '4.9/5',
+  successRate: '92%',
+  guarantee: '100%'
+};
 
 export default function TrustSignals() {
   return (
@@ -22,7 +33,7 @@ export default function TrustSignals() {
               <Users className="w-6 h-6 text-purple-600" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-1">
-              5,200+
+              {METRICS.activeFamilies}
             </div>
             <div className="text-sm text-gray-600 font-medium">
               Active Families
@@ -40,7 +51,7 @@ export default function TrustSignals() {
               <Star className="w-6 h-6 text-yellow-600 fill-yellow-600" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-yellow-600 mb-1">
-              4.9/5
+              {METRICS.averageRating}
             </div>
             <div className="text-sm text-gray-600 font-medium">
               Average Rating
@@ -58,7 +69,7 @@ export default function TrustSignals() {
               <TrendingUp className="w-6 h-6 text-green-600" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-green-600 mb-1">
-              92%
+              {METRICS.successRate}
             </div>
             <div className="text-sm text-gray-600 font-medium">
               Success Rate
@@ -76,7 +87,7 @@ export default function TrustSignals() {
               <Shield className="w-6 h-6 text-blue-600" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-1">
-              100%
+              {METRICS.guarantee}
             </div>
             <div className="text-sm text-gray-600 font-medium">
               Money-Back Guarantee
