@@ -5,6 +5,7 @@
  */
 
 import { sendEmail } from '../email-service';
+import { BOOK_PRICING, formatBookPrice, getDiscountText } from './config';
 
 export interface WarriorsSequenceData {
   studentName: string;
@@ -187,8 +188,8 @@ function getWarriorsBookUpsellTemplate(data: WarriorsSequenceData): string {
           </div>
           
           <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 16px; border-radius: 8px; margin-top: 16px; text-align: center;">
-            <p style="margin: 0; font-size: 24px; font-weight: bold;">$12.99</p>
-            <p style="margin: 8px 0 0 0; font-size: 14px;">(Reg. $17.99) - Save 28% as a Warrior!</p>
+            <p style="margin: 0; font-size: 24px; font-weight: bold;">${memberPrice}</p>
+            <p style="margin: 8px 0 0 0; font-size: 14px;">(Reg. ${regularPrice}) - ${getDiscountText("warriors")} as a Warrior!</p>
           </div>
         </div>
         
@@ -284,14 +285,14 @@ function getWarriorsBookReminderTemplate(data: WarriorsSequenceData): string {
       </div>
       
       <div style="background: #111; padding: 40px 30px; border-radius: 0 0 16px 16px; color: #fff;">
-        <p style="font-size: 18px; color: #d1d5db;">Your 28% discount expires in 24 hours! ⏰</p>
+        <p style="font-size: 18px; color: #d1d5db;">Your ${book.discountPercent}% discount expires in 24 hours! ⏰</p>
         
         <p style="color: #d1d5db;">Don't let ${data.studentName} miss "Mindset" - the book that helps Warriors level up their thinking.</p>
         
         <div style="background: rgba(239,68,68,0.1); padding: 20px; border-radius: 12px; margin: 24px 0; border: 2px solid #ef4444;">
           <p style="margin: 0; text-align: center;">
-            <strong style="font-size: 24px; color: #ef4444;">$12.99</strong>
-            <span style="text-decoration: line-through; color: #9ca3af; margin-left: 8px;">$17.99</span>
+            <strong style="font-size: 24px; color: #ef4444;">${memberPrice}</strong>
+            <span style="text-decoration: line-through; color: #9ca3af; margin-left: 8px;">${regularPrice}</span>
           </p>
           <p style="margin: 8px 0 0 0; text-align: center; color: #9ca3af; font-size: 14px;">Warrior discount ends tomorrow</p>
         </div>

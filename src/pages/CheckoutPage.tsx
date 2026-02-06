@@ -15,6 +15,7 @@ import { createPayPalSubscription } from '../lib/paypal/service';
 import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
 import StripeNotConfiguredBanner from '../components/payments/StripeNotConfiguredBanner';
+import { supabase } from '../lib/supabase/client';
 
 // Import logo
 import crownLogo from '../assets/8a35650ca022ec6bc649702b5b35c75083424e81.png';
@@ -28,6 +29,14 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'paypal' | 'classwallet'>('stripe');
   const [isProcessing, setIsProcessing] = useState(false);
   const [classWalletType, setClassWalletType] = useState<ClassWalletPaymentType>(ClassWalletPaymentType.SCHOLARSHIP);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+
+  // Get current user on mount
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setCurrentUser(user);
+    });
+  }, []);
 
   useEffect(() => {
     // Find the selected plan
@@ -47,6 +56,12 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     try {
+      if (!currentUser) {
+        toast.error('Please log in to complete checkout');
+        navigate('/login');
+        return;
+      }
+
       const stripe = await getStripe();
       if (!stripe) {
         toast.error('Stripe is not configured yet. Please add your Stripe keys to continue.');
@@ -67,8 +82,8 @@ export default function CheckoutPage() {
         },
         body: JSON.stringify({
           priceId: selectedPlan.stripePriceId,
-          userId: 'user_123', // Replace with actual user ID from auth
-          userEmail: 'mariannav920@gmail.com', // Replace with actual user email
+          userId: currentUser.id,
+          userEmail: currentUser.email,
           successUrl: `${window.location.origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
           cancelUrl: `${window.location.origin}/pricing`,
         }),
@@ -99,19 +114,40 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     try {
+      if (!currentUser) {
+        toast.error('Please log in to complete checkout');
+        navigate('/login');
+        return;
+      }
+
       if (!isPayPalConfigured()) {
         toast.error('PayPal is not configured yet. Please use Stripe or ClassWallet.');
         setIsProcessing(false);
         return;
       }
 
+      // Validate PayPal Plan ID exists
+      const paypalPlanId = selectedPlan.paypalPlanId;
+      if (!paypalPlanId || paypalPlanId.startsWith('P-PLACEHOLDER') || paypalPlanId.includes('PLACEHOLDER')) {
+        toast.error('PayPal subscription plan is not configured yet. Please contact support or use another payment method.');
+        setIsProcessing(false);
+        return;
+      }
+
+      // Get user profile for name
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('display_name')
+        .eq('id', currentUser.id)
+        .single();
+
       // Create PayPal subscription
       const result = await createPayPalSubscription({
-        userId: 'user_123', // Replace with actual user ID from auth
-        userEmail: 'mariannav920@gmail.com', // Replace with actual user email
-        userName: 'User Name', // Replace with actual user name
+        userId: currentUser.id,
+        userEmail: currentUser.email || '',
+        userName: profile?.display_name || currentUser.email || 'User',
         planId: selectedPlan.id,
-        paypalPlanId: selectedPlan.paypalPlanId || 'P-PLACEHOLDER',
+        paypalPlanId,
         returnUrl: `${window.location.origin}/payment-success`,
         cancelUrl: `${window.location.origin}/pricing`,
       });
@@ -134,17 +170,30 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     try {
+      if (!currentUser) {
+        toast.error('Please log in to complete checkout');
+        navigate('/login');
+        return;
+      }
+
       if (!isClassWalletConfigured()) {
         toast.error('ClassWallet is not configured yet. Please use Stripe or PayPal.');
         setIsProcessing(false);
         return;
       }
 
+      // Get user profile for name
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('display_name')
+        .eq('id', currentUser.id)
+        .single();
+
       // Create ClassWallet payment
       const result = await createClassWalletPayment({
-        userId: 'user_123', // Replace with actual user ID from auth
-        userEmail: 'mariannav920@gmail.com', // Replace with actual user email
-        userName: 'User Name', // Replace with actual user name
+        userId: currentUser.id,
+        userEmail: currentUser.email || '',
+        userName: profile?.display_name || currentUser.email || 'User',
         planId: selectedPlan.id,
         amount: selectedPlan.price,
         description: `${selectedPlan.name} - Learning Kingdom Subscription`,

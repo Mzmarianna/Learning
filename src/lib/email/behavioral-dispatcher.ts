@@ -263,7 +263,7 @@ function determineMathLevel(profile: any): 'beginner' | 'intermediate' | 'advanc
  * Calculate age from date of birth
  */
 function calculateAge(dateOfBirth: string | null): number {
-  if (!dateOfBirth) return 10; // Default age
+  if (!dateOfBirth) return DEFAULT_USER_AGE;
   
   const today = new Date();
   const birthDate = new Date(dateOfBirth);
