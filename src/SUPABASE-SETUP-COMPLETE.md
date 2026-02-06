@@ -3,9 +3,9 @@
 ## ✅ **What's Ready:**
 
 1. **Supabase Connected:**
-   - URL: `https://wyclbrafklhvdyjpoeno.supabase.co`
+   - URL: `https://YOUR-PROJECT.supabase.co`
    - Anon Key: Already configured in `/config.ts`
-   - Database password: `fVjgI7aIiKErQnsD`
+  - Database password: `YOUR_DB_PASSWORD`
 
 2. **Email Lead Capture System:**
    - ✅ Database migration ready (`/supabase/migrations/008_email_leads.sql`)
@@ -29,7 +29,7 @@ You need to run the SQL migration to create the `email_leads` table in your Supa
 
 **Option A: Supabase Dashboard (Easiest)**
 
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click "SQL Editor" in the left sidebar
 3. Click "New Query"
 4. Copy/paste this SQL:
@@ -100,7 +100,7 @@ COMMENT ON COLUMN email_leads.source IS 'Where the lead came from (homepage, fre
 
 ```bash
 # Connect to your database
-psql "postgresql://postgres:fVjgI7aIiKErQnsD@db.wyclbrafklhvdyjpoeno.supabase.co:5432/postgres"
+psql "postgresql://postgres:[YOUR-PASSWORD]@db.YOUR-PROJECT.supabase.co:5432/postgres"
 
 # Then paste the SQL from above
 ```
@@ -131,7 +131,7 @@ After running the migration:
 5. **Submit the form**
 
 6. **Check Supabase:**
-   - Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
+   - Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
    - Click "email_leads" table
    - You should see your test lead! 🎉
 
@@ -246,3 +246,5 @@ Every visitor who downloads the guide is in your database, even if they don't si
 ---
 
 **Run that SQL migration and you're LIVE! 🚀**
+
+

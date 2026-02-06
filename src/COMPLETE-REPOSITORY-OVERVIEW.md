@@ -249,7 +249,7 @@ npm run build
 netlify deploy --prod
 
 # Backend → Supabase (already connected)
-# Database URL: wyclbrafklhvdyjpoeno.supabase.co
+# Database URL: YOUR_PROJECT_REF.supabase.co
 ```
 
 **Cost:** ~$50-150/month (scales automatically)
@@ -506,8 +506,8 @@ paywall_events     # Freemium conversion tracking
 - Dashboard: `/dashboard/admin`
 
 **Supabase Project:**
-- URL: https://wyclbrafklhvdyjpoeno.supabase.co
-- Project ID: wyclbrafklhvdyjpoeno
+- URL: https://YOUR-PROJECT.supabase.co
+- Project ID: YOUR_PROJECT_REF
 
 **GCP Project:**
 - Project ID: gen-lang-client-0029826717
@@ -563,3 +563,5 @@ You have a **complete, production-ready edtech platform** with:
 ---
 
 **Built with ❤️ for neurodivergent learners worldwide.** 🏰👑🦉
+
+

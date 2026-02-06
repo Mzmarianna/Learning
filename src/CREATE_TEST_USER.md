@@ -24,7 +24,7 @@ Navigate to: `http://localhost:5173/signup`
 ### Step 3: Click "Create Account"
 
 ### Step 4: Check Supabase Dashboard
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click **"Authentication"** → **"Users"**
 3. You should see your new user!
 
@@ -50,7 +50,7 @@ If the sign-up page gives errors, email confirmations might be blocking you.
 
 ### Disable Email Confirmations in Supabase:
 
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click **"Authentication"** in left sidebar
 3. Click **"Providers"** tab
 4. Scroll to **"Email"** section
@@ -67,7 +67,7 @@ Now try creating an account again via the sign-up page!
 If sign-up still doesn't work, create the user manually:
 
 ### Step 1: Create Auth User
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click **"Authentication"** → **"Users"**
 3. Click **"Add user"** button
 4. Fill in:
@@ -138,7 +138,7 @@ Look for error messages that say:
 Open browser console and check for:
 ```
 ✅ Supabase client initialized successfully
-🔗 Connected to: https://wyclbrafklhvdyjpoeno.supabase.co
+🔗 Connected to: https://YOUR-PROJECT.supabase.co
 ```
 
 If you see this, your connection is working! You just need to create a user.
@@ -157,3 +157,5 @@ Once you're logged in, you can:
 ---
 
 **Need more help?** Check your browser console (F12) for specific error messages!
+
+

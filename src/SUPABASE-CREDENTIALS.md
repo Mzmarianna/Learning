@@ -1,7 +1,7 @@
 # 🔑 Your Supabase Configuration - Complete Reference
 
 **Project:** Mz. Marianna's Academy  
-**Supabase Project:** wyclbrafklhvdyjpoeno  
+**Supabase Project:** YOUR_PROJECT_REF  
 **Status:** ✅ Already Configured
 
 ---
@@ -12,10 +12,10 @@
 
 ```bash
 # Primary Supabase URL (Data API)
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 
 # Anon/Public Key (Safe for frontend)
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Y2xicmFma2xodmR5anBvZW5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjE5NTksImV4cCI6MjA4MzczNzk1OX0.m5-k4PKsusRyKYeZSyOeUKb5Y_jm3ZhXNC0GXWzC2CM
+VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 ```
 
 **Where it's configured:**
@@ -29,19 +29,19 @@ VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 ### **Supabase Dashboard:**
 ```
 Main Dashboard:
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 
 Table Editor:
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
 
 SQL Editor:
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/sql/new
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF/sql/new
 
 API Keys:
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/api
 
 Database Settings:
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/database
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/database
 ```
 
 ---
@@ -56,8 +56,8 @@ Go to: **Netlify Dashboard → Your Site → Site settings → Environment varia
 
 ```bash
 # Required for Production
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Y2xicmFma2xodmR5anBvZW5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjE5NTksImV4cCI6MjA4MzczNzk1OX0.m5-k4PKsusRyKYeZSyOeUKb5Y_jm3ZhXNC0GXWzC2CM
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
+VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 ```
 
 **Note:** The Service Role Key is already set in your Netlify environment based on the system info.
@@ -82,7 +82,7 @@ Based on your platform setup, you should have these tables:
 
 ### **Verify Tables Exist:**
 ```
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
 2. Check left sidebar - you should see all tables listed
 3. If tables are missing, run migrations (see DATABASE-SETUP.md)
 ```
@@ -165,7 +165,7 @@ Your app uses a centralized config with fallback values:
 ```typescript
 // From /config.ts
 supabase: {
-  url: getEnv('VITE_SUPABASE_URL') || 'https://wyclbrafklhvdyjpoeno.supabase.co',
+  url: getEnv('VITE_SUPABASE_URL') || 'https://YOUR-PROJECT.supabase.co',
   anonKey: getEnv('VITE_SUPABASE_ANON_KEY') || 'eyJhbGci...',
 }
 ```
@@ -197,7 +197,7 @@ If you need to set up or update your database:
 
 ### **Option 1: Using SQL Editor (Recommended)**
 
-1. **Go to:** https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/sql/new
+1. **Go to:** https://supabase.com/dashboard/project/YOUR_PROJECT_REF/sql/new
 
 2. **Run migrations in order:**
    - Look in `/supabase/migrations/` folder
@@ -220,7 +220,7 @@ npm install -g supabase
 supabase login
 
 # Link to your project
-supabase link --project-ref wyclbrafklhvdyjpoeno
+supabase link --project-ref YOUR_PROJECT_REF
 
 # Push migrations
 supabase db push
@@ -232,24 +232,24 @@ supabase db push
 
 ### **REST API Endpoint:**
 ```
-https://wyclbrafklhvdyjpoeno.supabase.co/rest/v1/
+https://YOUR-PROJECT.supabase.co/rest/v1/
 ```
 
 Test with curl:
 ```bash
-curl https://wyclbrafklhvdyjpoeno.supabase.co/rest/v1/email_leads?select=count \
+curl https://YOUR-PROJECT.supabase.co/rest/v1/email_leads?select=count \
   -H "apikey: YOUR_ANON_KEY" \
   -H "Authorization: Bearer YOUR_ANON_KEY"
 ```
 
 ### **Auth Endpoint:**
 ```
-https://wyclbrafklhvdyjpoeno.supabase.co/auth/v1/
+https://YOUR-PROJECT.supabase.co/auth/v1/
 ```
 
 ### **Storage Endpoint:**
 ```
-https://wyclbrafklhvdyjpoeno.supabase.co/storage/v1/
+https://YOUR-PROJECT.supabase.co/storage/v1/
 ```
 
 ---
@@ -307,7 +307,7 @@ ALTER TABLE email_leads ENABLE ROW LEVEL SECURITY;
 
 ### **Manual Backup:**
 ```
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/database/backups
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/database/backups
 2. Click "Create backup"
 3. Wait for backup to complete
 4. Download backup file
@@ -325,7 +325,7 @@ Your Supabase instance location: **(Check in dashboard)**
 
 **To check region:**
 ```
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/general
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/general
 2. Look for "Region"
 3. Example: us-east-1, eu-west-1, etc.
 ```
@@ -341,7 +341,7 @@ Your Supabase instance location: **(Check in dashboard)**
 
 ### **Check API Usage:**
 ```
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/billing
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/billing
 ```
 
 **Free Tier Limits:**
@@ -352,7 +352,7 @@ https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/billing
 
 ### **View Logs:**
 ```
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/logs/edge-functions
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF/logs/edge-functions
 ```
 
 **Check for:**
@@ -382,13 +382,13 @@ Before deploying to Netlify:
 
 ### **Get All Your Keys:**
 
-Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
+Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/api
 
 **You'll find:**
 
 1. **Project URL** (same as above)
    ```
-   https://wyclbrafklhvdyjpoeno.supabase.co
+   https://YOUR-PROJECT.supabase.co
    ```
 
 2. **anon/public key** (safe for frontend) ✅
@@ -431,7 +431,7 @@ Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
 
 Your Supabase is configured and ready to use:
 
-**Primary URL:** `https://wyclbrafklhvdyjpoeno.supabase.co`  
+**Primary URL:** `https://YOUR-PROJECT.supabase.co`  
 **Status:** ✅ Active and configured  
 **Next Step:** Deploy to Netlify and go live!
 
@@ -447,3 +447,5 @@ Your Supabase is configured and ready to use:
 ---
 
 **🎯 Ready to deploy? Follow YOUR-ACTION-PLAN.md!**
+
+

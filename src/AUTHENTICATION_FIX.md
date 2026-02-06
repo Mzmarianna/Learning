@@ -5,7 +5,7 @@
 **Error:** "Invalid credentials" or "No authentication / invalid username"
 
 **Why this happened:**
-- ✅ Your Supabase **IS** configured correctly (connected to: `https://wyclbrafklhvdyjpoeno.supabase.co`)
+- ✅ Your Supabase **IS** configured correctly (connected to: `https://YOUR-PROJECT.supabase.co`)
 - ❌ But the Login Page was showing **"Demo Mode Active"** (misleading!)
 - ❌ You tried logging in with `demo@test.com / test123` (demo credentials)
 - ❌ But your app is connected to **REAL Supabase** (not demo mode)
@@ -51,7 +51,7 @@ I created 3 new files to help you:
 4. **Click "Create Account"**
 
 5. **Check Supabase Dashboard:**
-   - Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+   - Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
    - Click **"Authentication"** → **"Users"**
    - You should see your new user!
    - **IMPORTANT:** If it says "Waiting for verification":
@@ -73,7 +73,7 @@ I created 3 new files to help you:
 Sometimes Supabase requires email confirmation, which can block sign-ups.
 
 1. **Go to Supabase Dashboard:**
-   https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+   https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 
 2. **Navigate to Authentication settings:**
    - Click **"Authentication"** in left sidebar
@@ -95,7 +95,7 @@ If sign-up still doesn't work, create the user manually in Supabase:
 
 #### **Step 1: Create Auth User**
 
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click **"Authentication"** → **"Users"**
 3. Click **"Add user"** button
 4. Fill in:
@@ -161,7 +161,7 @@ If you just want to **test the app** without dealing with authentication:
 After refreshing the page, you should see:
 ```
 ✅ Supabase client initialized successfully
-🔗 Connected to: https://wyclbrafklhvdyjpoeno.supabase.co
+🔗 Connected to: https://YOUR-PROJECT.supabase.co
 ```
 
 **NOT this:**
@@ -273,3 +273,5 @@ Once you're logged in successfully:
 ---
 
 🦉 **Welcome to Mz. Marianna's Academy!** You're all set to start testing the platform! 🎉
+
+

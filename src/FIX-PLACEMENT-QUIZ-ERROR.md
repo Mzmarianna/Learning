@@ -31,7 +31,7 @@ The Figma prototype is just a preview. You need to deploy your actual codebase t
 **1. Make sure your Supabase tables exist**
 ```bash
 # Go to Supabase SQL Editor:
-# https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/sql/new
+# https://supabase.com/dashboard/project/YOUR_PROJECT_REF/sql/new
 
 # Run this migration:
 # Copy the content from: /supabase/migrations/007_placement_quiz.sql
@@ -67,10 +67,10 @@ If you want the Figma prototype to work (not recommended - just deploy the real 
 2. Click **"Make settings"** (top-right)
 3. Go to **"Integrations"** → **"Supabase"**
 4. Click **"Connect Supabase"**
-5. Authorize and select project: `wyclbrafklhvdyjpoeno`
+5. Authorize and select project: `YOUR_PROJECT_REF`
 6. Tell Figma AI:
    ```
-   "Connect this app to my Supabase project wyclbrafklhvdyjpoeno 
+   "Connect this app to my Supabase project YOUR_PROJECT_REF 
    and use the placement_quiz_attempts table"
    ```
 
@@ -92,7 +92,7 @@ Your production codebase is complete and ready. Deploy that instead:
 ### **Step 1: Verify Tables Exist**
 
 **Check in Supabase:**
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
 2. Look for these tables:
    - ✅ `placement_quiz_questions`
    - ✅ `placement_quiz_attempts`
@@ -205,7 +205,7 @@ CREATE POLICY "Users can read quiz attempts"
 
 **How to run:**
 1. Copy the SQL above
-2. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/sql/new
+2. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/sql/new
 3. Paste and click **"Run"**
 
 ### **Step 3: Add Sample Questions**
@@ -229,7 +229,7 @@ INSERT INTO placement_quiz_questions (question_text, question_type, difficulty_l
 
 ### **In Supabase Table Editor:**
 
-1. **Go to:** https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
+1. **Go to:** https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
 
 2. **Check tables exist:**
    - Click **"placement_quiz_questions"** - should show 6 sample questions
@@ -345,7 +345,7 @@ INSERT INTO placement_quiz_questions (question_text, question_type, difficulty_l
 ```javascript
 // In browser console
 console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
-// Should show: https://wyclbrafklhvdyjpoeno.supabase.co
+// Should show: https://YOUR-PROJECT.supabase.co
 ```
 
 **3. Check RLS policies:**
@@ -367,8 +367,8 @@ VALUES ('Test Student', 10, ARRAY['Math', 'Science']);
 
 **If you're stuck:**
 
-1. **Check database:** https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
-2. **View logs:** https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/logs
+1. **Check database:** https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
+2. **View logs:** https://supabase.com/dashboard/project/YOUR_PROJECT_REF/logs
 3. **Test locally:** `npm run dev` → http://localhost:5173/placement-quiz
 4. **Check console:** F12 → Console tab for detailed errors
 
@@ -394,3 +394,5 @@ Once fixed, your quiz will:
 4. ✅ Test at www.mzmarianna.com/placement-quiz
 
 **Your Figma prototype is just a preview - deploy your real app!** 🚀
+
+

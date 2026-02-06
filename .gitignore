@@ -4,6 +4,9 @@ dist
 .DS_Store
 .idea
 .vscode
+.env
+.env.local
+.env.*
 
 # Built things
 _Debug/
@@ -36,3 +39,6 @@ game28.dta
 
 # Log files
 warnings.log
+
+# Local Netlify folder
+.netlify

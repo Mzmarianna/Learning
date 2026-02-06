@@ -9,7 +9,7 @@
 ✅ Complete platform built (165+ files, 15,500+ lines)  
 ✅ Domain purchased: www.mzmarianna.com  
 ✅ Email: mariannav920@gmail.com  
-✅ Supabase connected: wyclbrafklhvdyjpoeno.supabase.co  
+✅ Supabase connected: YOUR_PROJECT_REF.supabase.co  
 🎯 **READY TO DEPLOY!**
 
 ---
@@ -100,7 +100,7 @@ Start here in order:
 ## 🔑 **WHAT YOU NEED**
 
 ### **Required:**
-- ✅ Supabase account (you have: wyclbrafklhvdyjpoeno)
+- ✅ Supabase account (you have: YOUR_PROJECT_REF)
 - ✅ Domain (you have: mzmarianna.com)
 - ✅ Email (you have: mariannav920@gmail.com)
 - 🔲 Netlify account (free - sign up: https://netlify.com)
@@ -287,3 +287,4 @@ Reference:
 **🎯 NEXT STEP: Open `/DEPLOY-NOW-QUICK-START.md` and deploy!**
 
 **See you on the other side at https://www.mzmarianna.com! 🚀✨**
+

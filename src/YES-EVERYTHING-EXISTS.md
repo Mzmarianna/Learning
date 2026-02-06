@@ -367,7 +367,7 @@ http://localhost:5173/thank-you
 http://localhost:5173/placement-quiz
 
 # Check Supabase dashboard:
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 → Table Editor → email_leads
 → Table Editor → placement_quiz_results
 ```
@@ -377,3 +377,4 @@ https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
 **Status: 🎉 EVERYTHING EXISTS AND WORKS!** 
 
 No placeholders, no mockups - all fully functional, database-connected, production-ready code.
+

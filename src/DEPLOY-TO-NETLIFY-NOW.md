@@ -10,7 +10,7 @@
 ## ✅ **PREREQUISITES CHECK**
 
 Before starting, make sure you have:
-- [ ] Supabase project URL: `wyclbrafklhvdyjpoeno.supabase.co`
+- [ ] Supabase project URL: `YOUR_PROJECT_REF.supabase.co`
 - [ ] Supabase anon key (from Supabase dashboard)
 - [ ] Domain registrar access (where you bought mzmarianna.com)
 - [ ] GitHub account (for connecting to Netlify)
@@ -27,7 +27,7 @@ Create this file in your project root with these values:
 # ============================================================================
 # SUPABASE (Required)
 # ============================================================================
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY_HERE
 
 # ============================================================================
@@ -52,7 +52,7 @@ VITE_GEMINI_API_KEY=YOUR_GEMINI_KEY_HERE
 
 **1. Supabase Anon Key:**
 ```
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click "Settings" → "API"
 3. Copy "anon public" key
 ```
@@ -148,7 +148,7 @@ git push -u origin main
 4. Add each variable one by one:
 
 ```
-VITE_SUPABASE_URL = https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL = https://YOUR-PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY = [your anon key]
 VITE_STRIPE_PUBLISHABLE_KEY = [your stripe key]
 VITE_RESEND_API_KEY = [your resend key] (optional)
@@ -162,7 +162,7 @@ VITE_GEMINI_API_KEY = [your gemini key] (optional)
 
 ```bash
 # Set environment variables
-netlify env:set VITE_SUPABASE_URL "https://wyclbrafklhvdyjpoeno.supabase.co"
+netlify env:set VITE_SUPABASE_URL "https://YOUR-PROJECT.supabase.co"
 netlify env:set VITE_SUPABASE_ANON_KEY "your-anon-key"
 netlify env:set VITE_STRIPE_PUBLISHABLE_KEY "your-stripe-key"
 
@@ -542,7 +542,7 @@ netlify open
 # ============================================================================
 
 # Check email leads
-# Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+# Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 # → Table Editor → email_leads
 
 # Run SQL query
@@ -625,7 +625,7 @@ Once deployed:
 Domain: www.mzmarianna.com
 Email: mariannav920@gmail.com
 Platform: Netlify + Supabase
-Supabase URL: wyclbrafklhvdyjpoeno.supabase.co
+Supabase URL: YOUR_PROJECT_REF.supabase.co
 Admin Login: mariannav920@gmail.com / marianna2026
 ```
 
@@ -643,3 +643,5 @@ Follow the steps above in order, and you'll have your site live at **www.mzmaria
 - `/EMAIL-SETUP-GUIDE.md` - Resend setup
 
 **Let's go live! 🏰👑**
+
+

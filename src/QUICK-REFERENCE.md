@@ -58,7 +58,7 @@ node scripts/create-admin-user.js
 
 **Supabase Dashboard:**
 - https://supabase.com/dashboard
-- Project: wyclbrafklhvdyjpoeno
+- Project: YOUR_PROJECT_REF
 
 **Quick SQL:**
 ```sql
@@ -137,7 +137,7 @@ curl -H "Authorization: Bearer YOUR_CRON_API_KEY" \
 | `/FINAL-SUMMARY.md` | Complete overview |
 | `/config.ts` | Configuration |
 | `/vercel.json` | Deployment settings |
-| `.env.example` | Environment template |
+| `.env.local` | Environment template |
 
 ---
 
@@ -203,3 +203,5 @@ curl -H "Authorization: Bearer YOUR_CRON_API_KEY" \
 ---
 
 **Keep this card handy for quick reference!** 🎯
+
+

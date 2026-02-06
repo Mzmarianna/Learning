@@ -35,8 +35,8 @@ export const config = {
   supabase: {
     // For production: These will be overridden by environment variables
     // For local dev: Add your credentials here temporarily
-    url: getEnv('VITE_SUPABASE_URL') || 'https://wyclbrafklhvdyjpoeno.supabase.co',
-    anonKey: getEnv('VITE_SUPABASE_ANON_KEY') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Y2xicmFma2xodmR5anBvZW5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjE5NTksImV4cCI6MjA4MzczNzk1OX0.m5-k4PKsusRyKYeZSyOeUKb5Y_jm3ZhXNC0GXWzC2CM',
+    url: getEnv('VITE_SUPABASE_URL') || 'REPLACE_WITH_YOUR_SUPABASE_URL',
+    anonKey: getEnv('VITE_SUPABASE_ANON_KEY') || 'REPLACE_WITH_YOUR_SUPABASE_ANON_KEY',
   },
 
   // ============================================================================
@@ -110,9 +110,9 @@ export function validateProductionConfig(): { valid: boolean; errors: string[] }
     errors.push('VITE_SUPABASE_ANON_KEY environment variable is required in production');
   }
   
-  // Warn if still using development credentials
-  if (config.supabase.url.includes('wyclbrafklhvdyjpoeno')) {
-    errors.push('WARNING: Still using development Supabase credentials in production');
+  // Warn if placeholder values are still present
+  if (config.supabase.url.includes('REPLACE_WITH') || config.supabase.url.includes('your-project')) {
+    errors.push('WARNING: Supabase URL looks like a placeholder');
   }
   
   return {

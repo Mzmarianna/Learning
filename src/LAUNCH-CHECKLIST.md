@@ -35,7 +35,7 @@ Verify Supabase is configured:
 **Test Connection:**
 ```bash
 # Go to Supabase dashboard
-https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 
 # Check tables
 → Table Editor → Should see all tables
@@ -661,3 +661,4 @@ If something breaks:
 **🎉 CONGRATULATIONS! YOU'RE LIVE AT WWW.MZMARIANNA.COM! 🚀**
 
 Welcome to the world, Mz. Marianna's Academy! 🏰👑
+

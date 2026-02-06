@@ -9,7 +9,7 @@
 ## 🎯 **WHAT'S CONFIGURED**
 
 ### **✅ Supabase Backend**
-- **URL:** `https://wyclbrafklhvdyjpoeno.supabase.co`
+- **URL:** `https://YOUR-PROJECT.supabase.co`
 - **Status:** Active & Configured
 - **Keys:** Already set in code (with environment variable fallback)
 - **Tables:** 165+ files with complete database schema
@@ -24,7 +24,7 @@
 ### **✅ Deployment Files**
 - **netlify.toml** ✅ (Netlify configuration)
 - **_redirects** ✅ (Handled by netlify.toml)
-- **.env.example** ✅ (Environment template)
+- **.env.local** ✅ (Environment template)
 - **.gitignore** ✅ (Protects secrets)
 
 ### **✅ Payment System**
@@ -74,9 +74,9 @@
 
 ### **Supabase:**
 ```
-URL: https://wyclbrafklhvdyjpoeno.supabase.co
+URL: https://YOUR-PROJECT.supabase.co
 Anon Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Dashboard: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+Dashboard: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 ```
 
 ### **Admin Account:**
@@ -358,3 +358,6 @@ open YOUR-ACTION-PLAN.md
 **Status:** ✅ READY TO DEPLOY  
 **Next Step:** Run `./deploy-netlify.sh` or follow YOUR-ACTION-PLAN.md  
 **Time to Live:** ~2 hours total
+
+
+

@@ -7,7 +7,7 @@
 ## Step 1: Copy SQL Files (one at a time)
 
 Go to Supabase SQL Editor:  
-👉 **https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/sql/new**
+👉 **https://supabase.com/dashboard/project/YOUR_PROJECT_REF/sql/new**
 
 Then copy/paste these files **in order:**
 
@@ -49,7 +49,7 @@ If you see ✅ results, you're good to go!
 
 ## Step 3: Get Your API Keys
 
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/api
 2. Copy:
    - **Project URL** → Put in `.env.local` as `VITE_SUPABASE_URL`
    - **anon/public key** → Put in `.env.local` as `VITE_SUPABASE_ANON_KEY`
@@ -67,3 +67,4 @@ If you see ✅ results, you're good to go!
 ---
 
 That's it! 🚀
+

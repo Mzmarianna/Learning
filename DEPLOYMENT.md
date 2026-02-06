@@ -6,7 +6,7 @@ This project deploys a Vite React front-end to Netlify and Supabase Edge Functio
 
 - Netlify CLI authenticated to the target team (`netlify login`).
 - Supabase CLI logged in (`supabase login`) and pointed to the correct project (`supabase link --project-ref <project>`).
-- Environment variables copied from `.env.example` into a local `.env`.
+- Environment variables copied from `.env.local` into a local `.env`.
 - `npm install` executed locally.
 
 ## Release pipeline
@@ -44,3 +44,4 @@ This project deploys a Vite React front-end to Netlify and Supabase Edge Functio
 - Netlify deploy logs are accessible via `netlify open:deploy --prod`.
 - Supabase function logs stream from `supabase functions logs server --project-ref <project>`.
 - Consider wiring status notifications using Netlify build hooks and Supabase function webhooks.
+

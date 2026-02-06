@@ -3,7 +3,7 @@
 **Your Info:**
 - Domain: www.mzmarianna.com
 - Email: mariannav920@gmail.com
-- Supabase: wyclbrafklhvdyjpoeno.supabase.co
+- Supabase: YOUR_PROJECT_REF.supabase.co
 
 ---
 
@@ -13,9 +13,9 @@
 
 #### **Supabase Keys:**
 ```
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/api
 2. Copy:
-   - Project URL: https://wyclbrafklhvdyjpoeno.supabase.co
+   - Project URL: https://YOUR-PROJECT.supabase.co
    - anon public key: eyJ... (long string)
 ```
 
@@ -68,7 +68,7 @@ In Netlify Dashboard:
 → Environment variables
 → Add:
 
-VITE_SUPABASE_URL = https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL = https://YOUR-PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY = [your anon key]
 VITE_STRIPE_PUBLISHABLE_KEY = [your stripe key]
 
@@ -219,3 +219,5 @@ netlify open
 ---
 
 **🎉 READY TO LAUNCH! GO LIVE AT WWW.MZMARIANNA.COM! 🚀**
+
+

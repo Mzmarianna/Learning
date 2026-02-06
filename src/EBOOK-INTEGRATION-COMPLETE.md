@@ -260,7 +260,7 @@ git push
 # 2. Deploy to Netlify
 # Connect repo → Deploy
 # Add environment variables:
-# VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+# VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 # VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 # 3. Test production flow
@@ -284,3 +284,4 @@ Your marketing funnel is production-ready:
 ---
 
 **Questions? Need help?** Just ask! 🚀
+

@@ -11,7 +11,7 @@
 
 ### **Your Supabase Data API URL:**
 ```
-https://wyclbrafklhvdyjpoeno.supabase.co
+https://YOUR-PROJECT.supabase.co
 ```
 
 ### **Status:** ✅ Already configured in your code
@@ -70,13 +70,13 @@ chmod +x setup-quiz-database.sh
 ```
 
 **Or manually:**
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/sql/new
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/sql/new
 2. Copy SQL from: `/supabase/migrations/007_placement_quiz.sql`
 3. Paste and click "Run"
 4. Tables created! ✅
 
 **Verify tables exist:**
-- Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/editor
+- Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/editor
 - Should see: `placement_quiz_questions` and `placement_quiz_attempts`
 
 ---
@@ -163,7 +163,7 @@ Complete deployment checklist and status:
 - Timeline to live
 - After-launch tasks
 
-### **6. `/.env.example`**
+### **6. `/.env.local`**
 Environment variables template:
 - All required variables
 - Your Supabase credentials
@@ -229,7 +229,7 @@ Your production code is correctly using the Supabase client. No changes needed!
 **Answer:** ✅ YES
 
 ```
-URL: https://wyclbrafklhvdyjpoeno.supabase.co
+URL: https://YOUR-PROJECT.supabase.co
 Anon Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 Status: Already configured in /config.ts
 ```
@@ -296,7 +296,7 @@ Everything is configured and ready:
 - Deploy: `./deploy-netlify.sh`
 
 **Online:**
-- Supabase: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+- Supabase: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 - Netlify: https://app.netlify.com
 - DNS Check: https://dnschecker.org
 
@@ -323,3 +323,6 @@ Everything is configured and ready:
 **Scripts Created:** 💻 2 helper scripts  
 **Status:** 🚀 Ready to deploy  
 **Time to Live:** ⏰ ~2 hours
+
+
+

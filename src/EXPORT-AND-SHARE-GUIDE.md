@@ -37,7 +37,7 @@ mz-mariannas-academy.zip
 ├── vercel.json          ← NEW! Added for you
 ├── index.html           ← NEW! Added for you
 ├── .gitignore           ← NEW! Added for you
-├── .env.example         ← NEW! Added for you
+├── .env.local         ← NEW! Added for you
 ├── src/
 │   └── main.tsx         ← NEW! Added for you
 ├── components/          ← Your 80+ components
@@ -431,3 +431,4 @@ Your LMS has:
 **Your neurodivergent-first learning platform is ready to change lives!** 🦉✨
 
 Built with ❤️ for ADHD, Autistic, PDA, and ODD learners.
+

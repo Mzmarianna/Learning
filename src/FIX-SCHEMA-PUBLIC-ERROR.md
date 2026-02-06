@@ -24,7 +24,7 @@ Check your `.env` file (or Netlify environment variables):
 
 ```bash
 # Should be:
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJ... (your anon key, NOT service role key)
 
 # NOT this:
@@ -33,7 +33,7 @@ VITE_SUPABASE_ANON_KEY=service_role_key...  # ❌ Wrong key type
 ```
 
 **Fix:**
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/api
 2. Copy the **"anon public"** key (NOT service role key)
 3. Update your environment variable
 
@@ -68,7 +68,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 Go to Supabase dashboard and verify tables exist:
 
 ```
-1. Go to: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno
+1. Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
 2. Click "Table Editor"
 3. Verify you see these tables:
    ✅ users
@@ -164,7 +164,7 @@ VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 Error: Environment variable points to different project
 
 Fix:
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 (Make sure it's YOUR project URL)
 ```
 
@@ -209,7 +209,7 @@ Create a test file to verify Supabase works:
   <pre id="result"></pre>
 
   <script>
-    const SUPABASE_URL = 'https://wyclbrafklhvdyjpoeno.supabase.co';
+    const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
     const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE'; // Replace!
 
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -249,7 +249,7 @@ Create a test file to verify Supabase works:
 
 ## 📋 **CHECKLIST**
 
-- [ ] Using correct Supabase URL (wyclbrafklhvdyjpoeno.supabase.co)
+- [ ] Using correct Supabase URL (YOUR_PROJECT_REF.supabase.co)
 - [ ] Using anon key (NOT service role key)
 - [ ] Environment variables have VITE_ prefix
 - [ ] Tables exist in Supabase
@@ -264,7 +264,7 @@ Create a test file to verify Supabase works:
 ```
 1. Netlify Dashboard → Site configuration → Environment variables
 2. Verify:
-   VITE_SUPABASE_URL = https://wyclbrafklhvdyjpoeno.supabase.co
+   VITE_SUPABASE_URL = https://YOUR-PROJECT.supabase.co
    VITE_SUPABASE_ANON_KEY = eyJ... (anon key)
 3. Trigger new deploy
 4. Check build logs for errors
@@ -273,7 +273,7 @@ Create a test file to verify Supabase works:
 ### **For Local Development:**
 ```bash
 # Create .env.local file
-echo "VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co" > .env.local
+echo "VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co" > .env.local
 echo "VITE_SUPABASE_ANON_KEY=your_anon_key_here" >> .env.local
 
 # Restart dev server
@@ -327,7 +327,7 @@ Here's what your setup should look like:
 
 **Environment Variables (.env or Netlify):**
 ```bash
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Y2xicmFma2xodmR5anBvZW5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQwNjcyMDAsImV4cCI6MjAxOTY0MzIwMH0.XXXXXXXXXXXXXXXXXXXXX
 ```
 
@@ -371,3 +371,5 @@ const { data, error } = await supabase
 ---
 
 **The `_redirects` file is fine! The error is definitely from Supabase, not Netlify redirects.** Let me know what you find! 🔍
+
+

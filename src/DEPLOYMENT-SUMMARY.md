@@ -12,7 +12,7 @@
 1. **`netlify.toml`** - Netlify configuration
 2. **`_redirects`** - URL redirects (non-www → www, SPA routing)
 3. **`.gitignore`** - Keeps secrets safe
-4. **`.env.example`** - Environment variables template
+4. **`.env.local`** - Environment variables template
 5. **`deploy-netlify.sh`** - Automated deployment script
 
 ### **📖 Step-by-Step Guides:**
@@ -36,10 +36,10 @@
 
 #### **Supabase:**
 ```
-URL: https://supabase.com/dashboard/project/wyclbrafklhvdyjpoeno/settings/api
+URL: https://supabase.com/dashboard/project/YOUR_PROJECT_REF/settings/api
 
 Copy these:
-✅ Project URL: https://wyclbrafklhvdyjpoeno.supabase.co
+✅ Project URL: https://YOUR-PROJECT.supabase.co
 ✅ anon public key: eyJ... (long string)
 ```
 
@@ -138,7 +138,7 @@ Your Project/
 ├── netlify.toml          # Netlify configuration
 ├── _redirects            # URL redirects
 ├── .gitignore            # Git ignore rules
-├── .env.example          # Environment template
+├── .env.local          # Environment template
 ├── deploy-netlify.sh     # Deployment script
 └── package.json          # Dependencies
 ```
@@ -190,7 +190,7 @@ Code/
 - ✅ Sensitive files protected
 
 ### **Environment Variables:**
-- ✅ Template created (`.env.example`)
+- ✅ Template created (`.env.local`)
 - ✅ All required vars documented
 - ✅ Instructions for each key
 - ✅ Optional vars noted
@@ -372,3 +372,6 @@ chmod +x deploy-netlify.sh
 **🎯 You're 30 minutes away from https://www.mzmarianna.com being LIVE! 🏰👑**
 
 **Good luck, and welcome to the world! 🎉✨**
+
+
+

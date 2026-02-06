@@ -129,7 +129,7 @@ VITE_STRIPE_PUBLISHABLE_KEY=pk_test_51...
 STRIPE_SECRET_KEY=sk_test_51...
 
 # Supabase (already have these)
-VITE_SUPABASE_URL=https://wyclbrafklhvdyjpoeno.supabase.co
+VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
@@ -579,3 +579,4 @@ Need help with:
 - International currencies
 
 I'm here to help! 🚀
+
