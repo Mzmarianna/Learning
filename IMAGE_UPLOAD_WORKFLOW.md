@@ -196,8 +196,8 @@ Option A: On Your Computer          Option B: On Google Drive
    ┌──────────────────────────────────────────┐
    │ src/pages/HomePage.tsx                   │
    │                                          │
-   │ import hero from '../assets/hero-...jpg'│
-   │ <img src={hero} alt="..." />            │
+   │ import hero from '../assets/hero-back...'│
+   │ <img src={hero} alt="Hero background" />│
    └──────────────────────────────────────────┘
             ↓
 
