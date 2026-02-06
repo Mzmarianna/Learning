@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* 🏰 LEARNING KINGDOM - Roblox-Inspired Game Design System */
+  --font-size: 16px;
+  
+  /* Typography - Fun & Playful */
+  --font-primary: 'Fredoka', 'Lexend', -apple-system, sans-serif; /* Rounded, friendly */
+  --font-ui: 'Outfit', 'Nunito', -apple-system, sans-serif; /* Modern gaming UI */
+  --font-xp: 'Orbitron', monospace, sans-serif; /* Digital gaming stats */
+  --font-title: 'Fredoka', cursive, sans-serif; /* Playful headers */
+  
+  /* 🎮 KINGDOM COLORS - Vibrant Roblox Palette */
+  
+  /* Primary Kingdom Purple - Royal & Magical */
+  --kingdom-purple: oklch(0.60 0.24 290); /* Vibrant purple */
+  --kingdom-purple-light: oklch(0.85 0.15 290); /* Light purple */
+  --kingdom-purple-dark: oklch(0.45 0.28 290); /* Deep purple */
+  
+  /* Secondary Kingdom Cyan - Adventure & Energy */
+  --kingdom-cyan: oklch(0.70 0.20 210); /* Bright cyan */
+  --kingdom-cyan-light: oklch(0.90 0.12 210); /* Light cyan */
+  --kingdom-cyan-dark: oklch(0.50 0.24 210); /* Deep cyan */
+  
+  /* Accent Kingdom Pink - Joy & Creativity */
+  --kingdom-pink: oklch(0.72 0.22 340); /* Vibrant pink */
+  --kingdom-pink-light: oklch(0.90 0.14 340); /* Light pink */
+  --kingdom-pink-dark: oklch(0.55 0.26 340); /* Deep pink */
+  
+  /* Kingdom Gold - Achievement & Rewards */
+  --kingdom-gold: oklch(0.80 0.16 80); /* Bright gold */
+  --kingdom-gold-light: oklch(0.92 0.10 80); /* Light gold */
+  --kingdom-gold-dark: oklch(0.65 0.20 80); /* Rich gold */
+  
+  /* Kingdom Green - Success & Growth */
+  --kingdom-green: oklch(0.70 0.20 145); /* Vibrant green */
+  --kingdom-green-light: oklch(0.88 0.14 145); /* Light green */
+  --kingdom-green-dark: oklch(0.55 0.24 145); /* Deep green */
+  
+  /* Kingdom Orange - Energy & Fun */
+  --kingdom-orange: oklch(0.75 0.20 50); /* Bright orange */
+  --kingdom-orange-light: oklch(0.90 0.12 50); /* Light orange */
+  --kingdom-orange-dark: oklch(0.60 0.24 50); /* Deep orange */
+  
+  /* 🎨 GAME UI ELEMENTS */
+  
+  /* Background Layers - Game Interface */
+  --game-bg-sky: linear-gradient(180deg, oklch(0.85 0.12 250) 0%, oklch(0.78 0.16 210) 100%); /* Sky gradient */
+  --game-bg-surface: oklch(0.96 0.05 280); /* Light purple tint */
+  --game-bg-card: oklch(0.98 0.03 290); /* Almost white with purple hint */
+  
+  /* UI Panels - Roblox-style */
+  --panel-primary: oklch(0.20 0.05 280); /* Dark purple panel */
+  --panel-secondary: oklch(0.28 0.08 280); /* Medium purple panel */
+  --panel-glass: oklch(0.95 0.04 280 / 0.85); /* Frosted glass effect */
+  
+  /* Borders & Accents - Playful */
+  --border-game: oklch(0.60 0.18 280); /* Purple border */
+  --border-bright: oklch(0.75 0.20 210); /* Cyan accent border */
+  --border-glow: oklch(0.85 0.16 340); /* Pink glow */
+  
+  /* Shadows - Game Depth */
+  --shadow-game: 0 4px 12px oklch(0.30 0.16 280 / 0.25);
+  --shadow-game-hover: 0 8px 24px oklch(0.30 0.20 280 / 0.35);
+  --shadow-glow-purple: 0 0 20px oklch(0.60 0.24 290 / 0.4);
+  --shadow-glow-cyan: 0 0 20px oklch(0.70 0.20 210 / 0.4);
+  --shadow-glow-pink: 0 0 20px oklch(0.72 0.22 340 / 0.4);
+  
+  /* 🌟 REWARD GRADIENTS - Magical Effects */
+  --gradient-hero: linear-gradient(135deg, var(--kingdom-purple) 0%, var(--kingdom-pink) 50%, var(--kingdom-cyan) 100%);
+  --gradient-achievement: linear-gradient(135deg, var(--kingdom-gold) 0%, var(--kingdom-orange) 100%);
+  --gradient-quest: linear-gradient(135deg, var(--kingdom-cyan) 0%, var(--kingdom-purple) 100%);
+  --gradient-level-up: linear-gradient(135deg, var(--kingdom-green) 0%, var(--kingdom-cyan) 100%);
+  --gradient-magical: linear-gradient(135deg, var(--kingdom-pink) 0%, var(--kingdom-purple) 50%, var(--kingdom-cyan) 100%);
+  
+  /* 🎯 STANDARD TOKENS (mapped to Kingdom colors) */
+  --background: var(--game-bg-card);
+  --foreground: oklch(0.25 0.04 280);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.04 280);
+  
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.04 280);
+  --primary: var(--kingdom-purple);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--kingdom-cyan);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.94 0.04 280);
+  --muted-foreground: oklch(0.50 0.06 280);
+  --accent: var(--kingdom-pink);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: var(--kingdom-orange); /* Friendly warning, not red */
+  --destructive-foreground: oklch(1 0 0);
+  --border: var(--border-game);
+  --input: transparent;
+  --input-background: oklch(0.97 0.03 280);
+  --switch-background: var(--kingdom-purple-light);
+  --ring: var(--kingdom-purple);
+  
+  /* Success/Warning - Game-friendly */
+  --success: var(--kingdom-green);
+  --success-light: var(--kingdom-green-light);
+  --warning: var(--kingdom-gold);
+  --warning-light: var(--kingdom-gold-light);
+  
+  /* Font weights */
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  
+  /* Border radius - Rounded game UI */
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  
+  /* Sidebar - Game menu */
+  --sidebar: var(--panel-primary);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: var(--kingdom-purple);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: var(--panel-secondary);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: var(--border-game);
+  --sidebar-ring: var(--kingdom-cyan);
+}
+
+.dark {
+  /* 🌙 DARK MODE - Night Kingdom */
+  
+  /* Darker, richer backgrounds */
+  --game-bg-sky: linear-gradient(180deg, oklch(0.22 0.12 270) 0%, oklch(0.18 0.10 290) 100%);
+  --game-bg-surface: oklch(0.20 0.06 280);
+  --game-bg-card: oklch(0.24 0.05 280);
+  
+  --panel-primary: oklch(0.18 0.06 280);
+  --panel-secondary: oklch(0.26 0.08 280);
+  --panel-glass: oklch(0.22 0.05 280 / 0.90);
+  
+  --background: oklch(0.18 0.04 280);
+  --foreground: oklch(0.95 0.02 280);
+  --card: oklch(0.22 0.05 280);
+  --card-foreground: oklch(0.95 0.02 280);
+  --popover: oklch(0.22 0.05 280);
+  --popover-foreground: oklch(0.95 0.02 280);
+  --primary: var(--kingdom-purple-light);
+  --primary-foreground: oklch(0.12 0.06 280);
+  --secondary: var(--kingdom-cyan-light);
+  --secondary-foreground: oklch(0.12 0.06 280);
+  --muted: oklch(0.28 0.06 280);
+  --muted-foreground: oklch(0.65 0.02 280);
+  --accent: oklch(0.30 0.06 280);
+  --accent-foreground: oklch(0.95 0.02 280);
+  --border: var(--border-game);
+  --input: oklch(0.28 0.04 280);
+  --ring: var(--kingdom-primary);
+  
+  --sidebar: oklch(0.22 0.05 280);
+  --sidebar-foreground: oklch(0.95 0.02 280);
+  --sidebar-primary: var(--kingdom-purple);
+  --sidebar-primary-foreground: oklch(0.12 0.06 280);
+  --sidebar-accent: oklch(0.28 0.04 280);
+  --sidebar-accent-foreground: oklch(0.95 0.02 280);
+  --sidebar-border: var(--border-game);
+  --sidebar-ring: var(--kingdom-cyan);
+}
+
+@theme inline {
+  --color-calm-bg: var(--calm-bg);
+  --color-calm-surface: var(--calm-surface);
+  --color-calm-border: var(--calm-border);
+  --color-calm-primary: var(--calm-primary);
+  --color-calm-primary-dark: var(--calm-primary-dark);
+  
+  --color-reward-purple: var(--reward-purple);
+  --color-reward-purple-light: var(--reward-purple-light);
+  --color-reward-pink: var(--reward-pink);
+  --color-reward-pink-light: var(--reward-pink-light);
+  
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
+  --color-needs-attention: var(--needs-attention);
+  --color-needs-attention-light: var(--needs-attention-light);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-calm-bg text-foreground;
+    font-family: var(--font-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Dyslexia-friendly spacing */
+    letter-spacing: 0.02em;
+    word-spacing: 0.08em;
+    line-height: 1.6;
+  }
+}
+
+/**
+ * Base typography - Neurodivergent-friendly
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: var(--text-3xl);
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    label {
+      font-family: var(--font-ui);
+      font-size: var(--text-base);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    button {
+      font-family: var(--font-ui);
+      font-size: var(--text-base);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    input, textarea {
+      font-family: var(--font-ui);
+      font-size: var(--text-base);
+      font-weight: 400;
+      line-height: 1.6;
+      /* Higher contrast for readability */
+      color: oklch(0.15 0 0);
+    }
+  }
+}
+
+/* XP Display - Uses Orbitron font */
+.xp-display {
+  font-family: var(--font-xp);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Reward gradient backgrounds */
+.reward-bg {
+  background: var(--reward-gradient);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 3px solid var(--calm-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --calm-primary: oklch(0.45 0.18 200);
+    --border: oklch(0.30 0 0);
+  }
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+/* Dyslexia-friendly text selection */
+::selection {
+  background-color: var(--reward-purple-light);
+  color: var(--foreground);
+}
+
+/* ADHD-friendly: Clear visual hierarchy */
+.focus-mode {
+  /* Dims everything except the focused element */
+  filter: brightness(0.4);
+}
+
+.focus-mode-active {
+  filter: brightness(1);
+  position: relative;
+  z-index: 100;
+}
+
+/* Badge animations */
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes badgeUnlock {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Badge hover effects */
+.badge-hover {
+  transition: all 0.3s ease;
+}
+
+.badge-hover:hover {
+  transform: translateY(-4px) scale(1.05);
+  filter: drop-shadow(0 10px 25px rgba(59, 130, 246, 0.4));
+}

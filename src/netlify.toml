@@ -1,0 +1,74 @@
+# Netlify Configuration for Mz. Marianna's Academy
+# Domain: www.mzmarianna.com
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Publish directory (where built files are)
+  publish = "dist"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+  
+  # Build-time environment variables
+  # Add your actual keys in Netlify Dashboard → Site configuration → Environment variables
+  # These are just placeholders for reference
+
+[[redirects]]
+  # Redirect non-www to www
+  from = "https://mzmarianna.com/*"
+  to = "https://www.mzmarianna.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  # Handle SPA routing (all routes go to index.html)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Security headers for all pages
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  # Cache static assets for 1 year
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Cache images for 1 week
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Edge Functions (if using Netlify Functions in future)
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Development settings
+[dev]
+  command = "npm run dev"
+  port = 5173
+  targetPort = 5173
+  autoLaunch = false

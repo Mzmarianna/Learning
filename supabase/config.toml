@@ -1,0 +1,10 @@
+project_id = "learning-kingdom"
+
+[functions]
+ignore = ["logs"]
+
+[functions.server]
+verify_jwt = true
+
+[functions."send-email"]
+verify_jwt = true

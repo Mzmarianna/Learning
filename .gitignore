@@ -1,3 +1,10 @@
+# Node tooling
+node_modules
+dist
+.DS_Store
+.idea
+.vscode
+
 # Built things
 _Debug/
 Compiled/
