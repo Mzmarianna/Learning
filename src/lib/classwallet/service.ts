@@ -29,7 +29,7 @@ export async function createClassWalletPayment(
     const config = getClassWalletConfig();
 
     // Call the backend API to create ClassWallet payment
-    const response = await fetch('/.netlify/functions/classwallet-create-payment', {
+    const response = await fetch('/api/classwallet-establish-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export async function verifyClassWalletPayment(
   transactionId: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const response = await fetch('/.netlify/functions/classwallet-verify-payment', {
+    const response = await fetch('/api/classwallet-verify-payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

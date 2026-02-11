@@ -137,13 +137,13 @@ export default function GameHomePage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button
-                onClick={() => navigate('/placement-quiz')}
+                onClick={() => navigate('/get-started')}
                 className="group px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-bold rounded-2xl text-lg shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative flex items-center justify-center gap-2">
                   <Rocket className="size-5" />
-                  Start Your Adventure
+                  Get Started - Free Consultation
                   <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>

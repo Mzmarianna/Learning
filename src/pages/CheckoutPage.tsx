@@ -8,8 +8,9 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CreditCard, Lock, ArrowLeft, CheckCircle, Wallet, DollarSign } from 'lucide-react';
 import { PRICING_PLANS, ANNUAL_PRICING_PLANS, formatPrice, getStripe } from '../lib/stripe/config';
-import { isClassWalletConfigured } from '../lib/classwallet/config';
-import { createClassWalletPayment, ClassWalletPaymentType } from '../lib/classwallet/service';
+import { isClassWalletConfigured, ClassWalletPaymentType } from '../lib/classwallet/config';
+import { createClassWalletPayment } from '../lib/classwallet/service';
+import { createPayByClassWalletPayment } from '../lib/classwallet/payby-service';
 import { isPayPalConfigured, getPayPalConfig } from '../lib/paypal/config';
 import { createPayPalSubscription } from '../lib/paypal/service';
 import { Button } from '../components/ui/button';
@@ -189,22 +190,37 @@ export default function CheckoutPage() {
         .eq('id', currentUser.id)
         .single();
 
-      // Create ClassWallet payment
-      const result = await createClassWalletPayment({
-        userId: currentUser.id,
-        userEmail: currentUser.email || '',
-        userName: profile?.display_name || currentUser.email || 'User',
-        planId: selectedPlan.id,
-        amount: selectedPlan.price,
-        description: `${selectedPlan.name} - Learning Kingdom Subscription`,
-        paymentType: classWalletType,
-        returnUrl: `${window.location.origin}/payment-success`,
-        cancelUrl: `${window.location.origin}/pricing`,
-      });
+      const userName = profile?.display_name || currentUser.email || 'User';
 
-      if (result.success && result.authorizationUrl) {
-        // Redirect to ClassWallet for authorization
-        window.location.href = result.authorizationUrl;
+      // Create order data for Pay by ClassWallet
+      const orderData = {
+        orderId: `order_${crypto.randomUUID()}`,
+        items: [
+          {
+            id: selectedPlan.id,
+            name: selectedPlan.name,
+            description: selectedPlan.description,
+            quantity: 1,
+            price: selectedPlan.price,
+          },
+        ],
+        total: selectedPlan.price,
+        currency: 'USD',
+      };
+
+      // Use the Pay by ClassWallet service
+      const result = await createPayByClassWalletPayment(
+        currentUser.id,
+        currentUser.email || '',
+        userName,
+        orderData,
+        `${window.location.origin}/payment-success`,
+        `${window.location.origin}/pricing`
+      );
+
+      if (result.success && result.checkoutUrl) {
+        // Redirect to ClassWallet Pay by checkout
+        window.location.href = result.checkoutUrl;
       } else {
         throw new Error(result.error || 'Failed to create ClassWallet payment');
       }

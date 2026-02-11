@@ -19,11 +19,20 @@ import HomePage from './pages/HomePage';
 import FreeGuidePage from './pages/FreeGuidePage';
 import ThankYouPage from './pages/ThankYouPage';
 import AboutPage from './pages/AboutPage';
+import WelcomePage from './pages/WelcomePage';
+import AssessmentOfferPage from './pages/AssessmentOfferPage';
+import ScheduleAssessmentPage from './pages/ScheduleAssessmentPage';
 
 // Payments
 import PricingPage from './pages/PricingPage';
 import CheckoutPage from './pages/CheckoutPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import ClassWalletCallbackPage from './pages/ClassWalletCallbackPage';
+
+// Programs
+import ProgramsPage from './pages/ProgramsPage';
+import ProgramCheckoutPage from './pages/ProgramCheckoutPage';
+import HomeschoolEnrollmentPage from './pages/HomeschoolEnrollmentPage';
 
 // Quest System
 import QuestsPage from './pages/QuestsPage';
@@ -156,10 +165,22 @@ export default function App() {
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/about" element={<AboutPage />} />
         
+        {/* Visitor Workflow */}
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/get-started" element={<WelcomePage />} />
+        <Route path="/assessment-offer" element={<AssessmentOfferPage />} />
+        <Route path="/schedule-assessment" element={<ScheduleAssessmentPage />} />
+        
         {/* Payment Routes (public access) */}
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment-success" element={<PaymentSuccessPage />} />
+        <Route path="/classwallet-callback" element={<ClassWalletCallbackPage />} />
+        
+        {/* Program Routes (public access) */}
+        <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/programs/checkout" element={<ProgramCheckoutPage />} />
+        <Route path="/enroll/homeschool" element={<HomeschoolEnrollmentPage />} />
         
         {/* Public Placement Quiz (FREE - no login required) */}
         <Route path="/placement-quiz" element={<PlacementQuizPage />} />
