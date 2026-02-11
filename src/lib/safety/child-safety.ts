@@ -387,16 +387,25 @@ export async function checkSessionLimits(studentId: string): Promise<{
  */
 export function sanitizeContent(content: string): string {
   // Remove ALL HTML tags and dangerous content
-  let sanitized = content
-    // Remove all HTML tags completely
-    .replace(/<[^>]*>/g, '')
-    // Remove any javascript: protocol
-    .replace(/javascript\s*:/gi, '')
-    .replace(/data\s*:/gi, '')
-    .replace(/vbscript\s*:/gi, '')
-    // Remove event handlers
-    .replace(/on\w+\s*=/gi, '')
-    // Escape special characters to prevent XSS
+  let sanitized = content;
+
+  // Repeatedly remove dangerous multi-character patterns until stable
+  let previous: string;
+  do {
+    previous = sanitized;
+    sanitized = sanitized
+      // Remove all HTML tags completely
+      .replace(/<[^>]*>/g, '')
+      // Remove any javascript: protocol
+      .replace(/javascript\s*:/gi, '')
+      .replace(/data\s*:/gi, '')
+      .replace(/vbscript\s*:/gi, '')
+      // Remove event handlers
+      .replace(/on\w+\s*=/gi, '');
+  } while (sanitized !== previous);
+
+  // Escape special characters to prevent XSS
+  sanitized = sanitized
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
