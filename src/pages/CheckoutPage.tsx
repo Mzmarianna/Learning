@@ -8,8 +8,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CreditCard, Lock, ArrowLeft, CheckCircle, Wallet, DollarSign } from 'lucide-react';
 import { PRICING_PLANS, ANNUAL_PRICING_PLANS, formatPrice, getStripe } from '../lib/stripe/config';
-import { isClassWalletConfigured, ClassWalletPaymentType } from '../lib/classwallet/config';
-import { createClassWalletPayment } from '../lib/classwallet/service';
+import { isClassWalletConfigured } from '../lib/classwallet/config';
 import { createPayByClassWalletPayment } from '../lib/classwallet/payby-service';
 import { isPayPalConfigured, getPayPalConfig } from '../lib/paypal/config';
 import { createPayPalSubscription } from '../lib/paypal/service';
@@ -29,7 +28,6 @@ export default function CheckoutPage() {
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'paypal' | 'classwallet'>('stripe');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [classWalletType, setClassWalletType] = useState<ClassWalletPaymentType>(ClassWalletPaymentType.SCHOLARSHIP);
   const [currentUser, setCurrentUser] = useState<any>(null);
 
   // Get current user on mount
@@ -215,7 +213,8 @@ export default function CheckoutPage() {
         userName,
         orderData,
         `${window.location.origin}/payment-success`,
-        `${window.location.origin}/pricing`
+        `${window.location.origin}/pricing`,
+        classWalletType
       );
 
       if (result.success && result.checkoutUrl) {
@@ -436,23 +435,6 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                 </button>
-
-                {/* ClassWallet Payment Type Selector */}
-                {paymentMethod === 'classwallet' && (
-                  <div className="ml-9 mt-2 space-y-2">
-                    <p className="text-sm font-semibold text-gray-700">Payment Type:</p>
-                    <select
-                      value={classWalletType}
-                      onChange={(e) => setClassWalletType(e.target.value as ClassWalletPaymentType)}
-                      className="w-full p-2 border border-gray-300 rounded-lg text-sm"
-                    >
-                      <option value={ClassWalletPaymentType.SCHOLARSHIP}>Scholarship Program</option>
-                      <option value={ClassWalletPaymentType.REIMBURSEMENT}>Reimbursement</option>
-                      <option value={ClassWalletPaymentType.ESA}>Education Savings Account (ESA)</option>
-                      <option value={ClassWalletPaymentType.EMPOWERMENT}>Empowerment Scholarship</option>
-                    </select>
-                  </div>
-                )}
               </div>
 
               {/* Checkout Button */}

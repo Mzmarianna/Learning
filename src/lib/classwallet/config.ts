@@ -5,11 +5,15 @@
  */
 
 // ClassWallet API credentials
-const CLASSWALLET_API_KEY = import.meta.env.VITE_CLASSWALLET_API_KEY || '';
-const CLASSWALLET_MERCHANT_ID = import.meta.env.VITE_CLASSWALLET_MERCHANT_ID || '';
-const CLASSWALLET_VENDOR_ID = import.meta.env.VITE_CLASSWALLET_VENDOR_ID || '';
-const CLASSWALLET_API_URL = import.meta.env.VITE_CLASSWALLET_API_URL || 'https://api.classwallet.com/v3';
-const CLASSWALLET_CHECKOUT_URL = import.meta.env.VITE_CLASSWALLET_CHECKOUT_URL || 'https://app.classwallet.com/payby-checkout/';
+// NOTE: These environment variables are intentionally *not* prefixed with VITE_
+// so they are only available in server/edge runtimes and are not exposed to the browser bundle.
+const CLASSWALLET_API_KEY = import.meta.env.CLASSWALLET_API_KEY || '';
+const CLASSWALLET_MERCHANT_ID = import.meta.env.CLASSWALLET_MERCHANT_ID || '';
+const CLASSWALLET_VENDOR_ID = import.meta.env.CLASSWALLET_VENDOR_ID || '';
+const CLASSWALLET_API_URL =
+  import.meta.env.CLASSWALLET_API_URL || 'https://api.classwallet.com/v3';
+const CLASSWALLET_CHECKOUT_URL =
+  import.meta.env.VITE_CLASSWALLET_CHECKOUT_URL || 'https://app.classwallet.com/payby-checkout/';
 
 export interface ClassWalletConfig {
   apiKey: string;

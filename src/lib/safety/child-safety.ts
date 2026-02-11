@@ -4,6 +4,7 @@
  */
 
 import { supabase } from '../supabase/client';
+import sanitizeHtml from 'sanitize-html';
 
 export interface ParentalConsent {
   studentId: string;
@@ -386,25 +387,13 @@ export async function checkSessionLimits(studentId: string): Promise<{
  * Sanitize user-generated content for display
  */
 export function sanitizeContent(content: string): string {
-  // Remove ALL HTML tags and dangerous content
-  let sanitized = content;
+  // Use a robust HTML sanitizer to remove all tags and attributes
+  let sanitized = sanitizeHtml(content, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
 
-  // Repeatedly remove dangerous multi-character patterns until stable
-  let previous: string;
-  do {
-    previous = sanitized;
-    sanitized = sanitized
-      // Remove all HTML tags completely
-      .replace(/<[^>]*>/g, '')
-      // Remove any javascript: protocol
-      .replace(/javascript\s*:/gi, '')
-      .replace(/data\s*:/gi, '')
-      .replace(/vbscript\s*:/gi, '')
-      // Remove event handlers
-      .replace(/on\w+\s*=/gi, '');
-  } while (sanitized !== previous);
-
-  // Escape special characters to prevent XSS
+  // Escape special characters to prevent XSS when rendering in HTML
   sanitized = sanitized
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')

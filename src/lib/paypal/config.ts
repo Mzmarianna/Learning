@@ -6,7 +6,6 @@
 
 // PayPal API credentials
 const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID || '';
-const PAYPAL_CLIENT_SECRET = import.meta.env.VITE_PAYPAL_CLIENT_SECRET || '';
 const PAYPAL_MODE = import.meta.env.VITE_PAYPAL_MODE || 'sandbox'; // 'sandbox' or 'live'
 
 export interface PayPalConfig {

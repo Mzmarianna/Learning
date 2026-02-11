@@ -7,6 +7,8 @@
  * Step 3: Handle payment confirmation callback
  */
 
+import { ClassWalletPaymentType } from './config';
+
 /**
  * Allowed ClassWallet domains for checkout redirects
  * Used to prevent open-redirect vulnerabilities
@@ -112,6 +114,7 @@ export async function establishPayByClassWalletSession(
   userId: string,
   userEmail: string,
   userName: string,
+  paymentType: ClassWalletPaymentType,
   userPhone?: string
 ): Promise<{ success: boolean; sessionId?: string; error?: string }> {
   try {
@@ -124,6 +127,7 @@ export async function establishPayByClassWalletSession(
         userId,
         userEmail,
         userName,
+        paymentType,
         userPhone,
       }),
     });
@@ -179,7 +183,7 @@ export async function redirectToPayByClassWalletCheckout(
     
     // Use the checkout URL returned by the server which includes session/order identifier
     if (!data.checkoutUrl) {
-      throw new Error('Server did not return a checkout URL');
+      throw new Error(`Server did not return a checkout URL. Received: ${JSON.stringify(data)}`);
     }
     
     // Validate the checkout URL for security (prevent open-redirect attacks)
@@ -253,6 +257,7 @@ export async function createPayByClassWalletPayment(
   orderData: Omit<PayByClassWalletOrder, 'sessionId'>,
   returnUrl: string,
   cancelUrl: string,
+  paymentType: ClassWalletPaymentType,
   userPhone?: string
 ): Promise<{ success: boolean; checkoutUrl?: string; sessionId?: string; error?: string }> {
   // Step 1: Establish session
@@ -260,6 +265,7 @@ export async function createPayByClassWalletPayment(
     userId,
     userEmail,
     userName,
+    paymentType,
     userPhone
   );
 
