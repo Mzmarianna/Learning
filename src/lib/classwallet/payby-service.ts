@@ -7,7 +7,16 @@
  * Step 3: Handle payment confirmation callback
  */
 
-import { getClassWalletConfig } from './config';
+/**
+ * Allowed ClassWallet domains for checkout redirects
+ * Used to prevent open-redirect vulnerabilities
+ */
+const ALLOWED_CLASSWALLET_HOSTS = [
+  'app.classwallet.com',
+  'www.classwallet.com',
+  'classwallet.com',
+  'sandbox.classwallet.com', // For testing environments
+] as const;
 
 /**
  * Session data for Pay by ClassWallet
@@ -75,21 +84,23 @@ function validateCheckoutUrl(url: string): void {
     throw new Error('Checkout URL must use HTTPS protocol');
   }
 
-  // Validate hostname is a ClassWallet domain
-  const allowedHosts = [
-    'app.classwallet.com',
-    'www.classwallet.com',
-    'classwallet.com',
-    'sandbox.classwallet.com', // For testing environments
-  ];
-
+  // Validate hostname is a ClassWallet domain or proper subdomain
   const hostname = parsedUrl.hostname.toLowerCase();
-  const isAllowed = allowedHosts.some(host => 
-    hostname === host || hostname.endsWith('.' + host)
-  );
+  const isAllowed = ALLOWED_CLASSWALLET_HOSTS.some(host => {
+    // Exact match
+    if (hostname === host) {
+      return true;
+    }
+    // Proper subdomain (must end with ".host" not just contain host)
+    // This prevents "malicious-classwallet.com" from matching "classwallet.com"
+    if (hostname.endsWith('.' + host)) {
+      return true;
+    }
+    return false;
+  });
 
   if (!isAllowed) {
-    throw new Error(`Checkout URL must point to a ClassWallet domain (allowed: ${allowedHosts.join(', ')})`);
+    throw new Error(`Checkout URL must point to a ClassWallet domain (allowed: ${ALLOWED_CLASSWALLET_HOSTS.join(', ')})`);
   }
 }
 
