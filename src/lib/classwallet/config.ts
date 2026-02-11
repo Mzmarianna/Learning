@@ -7,12 +7,16 @@
 // ClassWallet API credentials
 const CLASSWALLET_API_KEY = import.meta.env.VITE_CLASSWALLET_API_KEY || '';
 const CLASSWALLET_MERCHANT_ID = import.meta.env.VITE_CLASSWALLET_MERCHANT_ID || '';
+const CLASSWALLET_VENDOR_ID = import.meta.env.VITE_CLASSWALLET_VENDOR_ID || '';
 const CLASSWALLET_API_URL = import.meta.env.VITE_CLASSWALLET_API_URL || 'https://api.classwallet.com/v3';
+const CLASSWALLET_CHECKOUT_URL = import.meta.env.VITE_CLASSWALLET_CHECKOUT_URL || 'https://app.classwallet.com/payby-checkout/';
 
 export interface ClassWalletConfig {
   apiKey: string;
   merchantId: string;
+  vendorId: string;
   apiUrl: string;
+  checkoutUrl: string;
 }
 
 /**
@@ -22,7 +26,9 @@ export function getClassWalletConfig(): ClassWalletConfig {
   return {
     apiKey: CLASSWALLET_API_KEY,
     merchantId: CLASSWALLET_MERCHANT_ID,
+    vendorId: CLASSWALLET_VENDOR_ID,
     apiUrl: CLASSWALLET_API_URL,
+    checkoutUrl: CLASSWALLET_CHECKOUT_URL,
   };
 }
 
@@ -30,7 +36,16 @@ export function getClassWalletConfig(): ClassWalletConfig {
  * Check if ClassWallet is configured
  */
 export function isClassWalletConfigured(): boolean {
-  return Boolean(CLASSWALLET_API_KEY && CLASSWALLET_MERCHANT_ID);
+  return Boolean(CLASSWALLET_VENDOR_ID);
+}
+
+/**
+ * Get Pay by ClassWallet checkout URL
+ * Constructs the checkout URL with callback parameter
+ */
+export function getPayByClassWalletCheckoutUrl(callbackUrl: string): string {
+  const config = getClassWalletConfig();
+  return `${config.checkoutUrl}?callback=${encodeURIComponent(callbackUrl)}`;
 }
 
 /**

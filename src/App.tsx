@@ -24,6 +24,11 @@ import AboutPage from './pages/AboutPage';
 import PricingPage from './pages/PricingPage';
 import CheckoutPage from './pages/CheckoutPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import ClassWalletCallbackPage from './pages/ClassWalletCallbackPage';
+
+// Programs
+import ProgramsPage from './pages/ProgramsPage';
+import ProgramCheckoutPage from './pages/ProgramCheckoutPage';
 
 // Quest System
 import QuestsPage from './pages/QuestsPage';
@@ -160,6 +165,11 @@ export default function App() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment-success" element={<PaymentSuccessPage />} />
+        <Route path="/classwallet-callback" element={<ClassWalletCallbackPage />} />
+        
+        {/* Program Routes (public access) */}
+        <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/programs/checkout" element={<ProgramCheckoutPage />} />
         
         {/* Public Placement Quiz (FREE - no login required) */}
         <Route path="/placement-quiz" element={<PlacementQuizPage />} />

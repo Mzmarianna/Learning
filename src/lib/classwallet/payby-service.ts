@@ -1,0 +1,240 @@
+/**
+ * Pay by ClassWallet Service
+ * Implements the 3-step workflow for ClassWallet Pay by integration
+ * 
+ * Step 1: Establish session with account data
+ * Step 2: Redirect to ClassWallet checkout with order data
+ * Step 3: Handle payment confirmation callback
+ */
+
+import { getClassWalletConfig, getPayByClassWalletCheckoutUrl } from './config';
+
+/**
+ * Session data for Pay by ClassWallet
+ */
+export interface PayByClassWalletSession {
+  sessionId: string;
+  userId: string;
+  userEmail: string;
+  accountData: {
+    name: string;
+    email: string;
+    phone?: string;
+  };
+}
+
+/**
+ * Order data for ClassWallet checkout
+ */
+export interface PayByClassWalletOrder {
+  sessionId: string;
+  orderId: string;
+  items: Array<{
+    id: string;
+    name: string;
+    description: string;
+    quantity: number;
+    price: number;
+  }>;
+  total: number;
+  currency: string;
+}
+
+/**
+ * Payment confirmation data from ClassWallet
+ */
+export interface PayByClassWalletConfirmation {
+  sessionId: string;
+  orderId: string;
+  transactionId: string;
+  status: 'approved' | 'declined' | 'pending';
+  amount: number;
+  timestamp: string;
+}
+
+/**
+ * Step 1: Establish session with account data
+ * Creates a session on the server with user account information
+ */
+export async function establishPayByClassWalletSession(
+  userId: string,
+  userEmail: string,
+  userName: string,
+  userPhone?: string
+): Promise<{ success: boolean; sessionId?: string; error?: string }> {
+  try {
+    const response = await fetch('/.netlify/functions/classwallet-establish-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId,
+        userEmail,
+        userName,
+        userPhone,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to establish ClassWallet session');
+    }
+
+    const data = await response.json();
+    return {
+      success: true,
+      sessionId: data.sessionId,
+    };
+  } catch (error: any) {
+    console.error('ClassWallet session error:', error);
+    return {
+      success: false,
+      error: error.message || 'Failed to establish session',
+    };
+  }
+}
+
+/**
+ * Step 2: Redirect to ClassWallet checkout with order data
+ * Constructs the checkout URL and prepares order data for ClassWallet
+ */
+export async function redirectToPayByClassWalletCheckout(
+  sessionId: string,
+  orderData: PayByClassWalletOrder,
+  returnUrl: string,
+  cancelUrl: string
+): Promise<{ success: boolean; checkoutUrl?: string; error?: string }> {
+  try {
+    // Store order data on the server associated with this session
+    const response = await fetch('/.netlify/functions/classwallet-prepare-checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sessionId,
+        orderData,
+        returnUrl,
+        cancelUrl,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to prepare ClassWallet checkout');
+    }
+
+    const data = await response.json();
+    
+    // Construct the Pay by ClassWallet checkout URL with callback
+    const callbackUrl = `${window.location.origin}/.netlify/functions/classwallet-callback`;
+    const checkoutUrl = getPayByClassWalletCheckoutUrl(callbackUrl);
+    
+    return {
+      success: true,
+      checkoutUrl,
+    };
+  } catch (error: any) {
+    console.error('ClassWallet checkout preparation error:', error);
+    return {
+      success: false,
+      error: error.message || 'Failed to prepare checkout',
+    };
+  }
+}
+
+/**
+ * Step 3: Verify payment confirmation
+ * Called after ClassWallet redirects back with payment confirmation
+ */
+export async function verifyPayByClassWalletPayment(
+  sessionId: string
+): Promise<{ success: boolean; confirmation?: PayByClassWalletConfirmation; error?: string }> {
+  try {
+    const response = await fetch('/.netlify/functions/classwallet-verify-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sessionId,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to verify ClassWallet payment');
+    }
+
+    const data = await response.json();
+    
+    if (!data.success) {
+      return {
+        success: false,
+        error: data.error || 'Payment verification failed',
+      };
+    }
+
+    return {
+      success: true,
+      confirmation: data.confirmation,
+    };
+  } catch (error: any) {
+    console.error('ClassWallet verification error:', error);
+    return {
+      success: false,
+      error: error.message || 'Failed to verify payment',
+    };
+  }
+}
+
+/**
+ * Create a complete Pay by ClassWallet payment flow
+ * Combines all 3 steps into a single convenient function
+ */
+export async function createPayByClassWalletPayment(
+  userId: string,
+  userEmail: string,
+  userName: string,
+  orderData: Omit<PayByClassWalletOrder, 'sessionId'>,
+  returnUrl: string,
+  cancelUrl: string,
+  userPhone?: string
+): Promise<{ success: boolean; checkoutUrl?: string; sessionId?: string; error?: string }> {
+  // Step 1: Establish session
+  const sessionResult = await establishPayByClassWalletSession(
+    userId,
+    userEmail,
+    userName,
+    userPhone
+  );
+
+  if (!sessionResult.success || !sessionResult.sessionId) {
+    return {
+      success: false,
+      error: sessionResult.error || 'Failed to establish session',
+    };
+  }
+
+  const sessionId = sessionResult.sessionId;
+
+  // Step 2: Prepare checkout and get redirect URL
+  const checkoutResult = await redirectToPayByClassWalletCheckout(
+    sessionId,
+    { ...orderData, sessionId },
+    returnUrl,
+    cancelUrl
+  );
+
+  if (!checkoutResult.success || !checkoutResult.checkoutUrl) {
+    return {
+      success: false,
+      sessionId,
+      error: checkoutResult.error || 'Failed to prepare checkout',
+    };
+  }
+
+  return {
+    success: true,
+    checkoutUrl: checkoutResult.checkoutUrl,
+    sessionId,
+  };
+}
