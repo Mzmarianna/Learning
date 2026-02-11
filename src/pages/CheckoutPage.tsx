@@ -213,7 +213,8 @@ export default function CheckoutPage() {
         userName,
         orderData,
         `${window.location.origin}/payment-success`,
-        `${window.location.origin}/pricing`
+        `${window.location.origin}/pricing`,
+        classWalletType
       );
 
       if (result.success && result.checkoutUrl) {
