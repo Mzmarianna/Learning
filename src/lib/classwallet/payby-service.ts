@@ -7,6 +7,7 @@
  * Step 3: Handle payment confirmation callback
  */
 
+import { getClassWalletConfig } from './config';
 import { getClassWalletConfig, getPayByClassWalletCheckoutUrl, ClassWalletPaymentType } from './config';
 
 /**
@@ -127,13 +128,14 @@ export async function redirectToPayByClassWalletCheckout(
 
     const data = await response.json();
     
-    // Construct the Pay by ClassWallet checkout URL with callback
-    const callbackUrl = `${window.location.origin}/api/classwallet-callback`;
-    const checkoutUrl = getPayByClassWalletCheckoutUrl(callbackUrl);
+    // Use the checkout URL returned by the server
+    if (!data.checkoutUrl) {
+      throw new Error(`Server did not return a checkout URL. Received: ${JSON.stringify(data)}`);
+    }
     
     return {
       success: true,
-      checkoutUrl,
+      checkoutUrl: data.checkoutUrl,
     };
   } catch (error: any) {
     console.error('ClassWallet checkout preparation error:', error);
