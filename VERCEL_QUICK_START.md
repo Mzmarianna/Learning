@@ -49,6 +49,8 @@ VITE_SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 **That's it for now! Other variables are optional.**
 
+> 💡 **Need help getting these?** See [ENVIRONMENT_VARIABLES_GUIDE.md](./ENVIRONMENT_VARIABLES_GUIDE.md) for step-by-step instructions!
+
 ---
 
 ### Step 4: Deploy! (1 minute)
