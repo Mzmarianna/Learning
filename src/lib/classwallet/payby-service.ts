@@ -7,7 +7,7 @@
  * Step 3: Handle payment confirmation callback
  */
 
-import { getClassWalletConfig, getPayByClassWalletCheckoutUrl } from './config';
+import { getClassWalletConfig } from './config';
 
 /**
  * Session data for Pay by ClassWallet
