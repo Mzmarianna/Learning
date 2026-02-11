@@ -3,6 +3,14 @@
 
   This is a code bundle for Gamified Tutoring App. The original project is available at https://www.figma.com/design/ilFglhVk2TTi1RSBNq0jCd/Gamified-Tutoring-App.
 
+  ## 🚀 Deploy to Vercel
+
+  **Ready to deploy to www.mzmarianna.com?**
+
+  - **⚡ Quick Start** → [VERCEL_QUICK_START.md](./VERCEL_QUICK_START.md) - Deploy in 5 minutes!
+  - **📖 Complete Guide** → [VERCEL_DEPLOYMENT_GUIDE.md](./VERCEL_DEPLOYMENT_GUIDE.md) - Full deployment documentation
+  - **📚 Repository Overview** → [LEARNING_FILES_OVERVIEW.md](./LEARNING_FILES_OVERVIEW.md) - All learning files & features
+
   ## Running the code
 
   Run `npm i` to install the dependencies.
