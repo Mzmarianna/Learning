@@ -13,7 +13,7 @@ const CLASSWALLET_VENDOR_ID = import.meta.env.CLASSWALLET_VENDOR_ID || '';
 const CLASSWALLET_API_URL =
   import.meta.env.CLASSWALLET_API_URL || 'https://api.classwallet.com/v3';
 const CLASSWALLET_CHECKOUT_URL =
-  import.meta.env.CLASSWALLET_CHECKOUT_URL || 'https://app.classwallet.com/payby-checkout/';
+  import.meta.env.VITE_CLASSWALLET_CHECKOUT_URL || 'https://app.classwallet.com/payby-checkout/';
 
 export interface ClassWalletConfig {
   apiKey: string;
