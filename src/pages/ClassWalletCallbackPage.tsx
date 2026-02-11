@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
-import { verifyPayByClassWalletPayment } from '../lib/classwallet/payby-service';
+import { verifyPayByClassWalletPayment, PayByClassWalletConfirmation } from '../lib/classwallet/payby-service';
 import { Button } from '../components/ui/button';
 
 export default function ClassWalletCallbackPage() {
@@ -19,7 +19,7 @@ export default function ClassWalletCallbackPage() {
   
   const [verifying, setVerifying] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState<'success' | 'failed' | 'pending'>('pending');
-  const [confirmation, setConfirmation] = useState<any>(null);
+  const [confirmation, setConfirmation] = useState<PayByClassWalletConfirmation | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
