@@ -9,6 +9,8 @@ on:
 jobs:
   lint-and-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -26,7 +28,9 @@ jobs:
       - name: TypeScript type check
         run: npm run type-check
         continue-on-error: true
-        # Note: Continue on error due to pre-existing TypeScript errors
+        # TECHNICAL DEBT: Continue on error due to pre-existing TypeScript errors
+        # in src/lib/curriculum/weeks-5-16-challenges.ts and src/lib/types/kingdom.ts
+        # TODO: Fix existing errors and change to continue-on-error: false
         # New PRs should not introduce additional type errors
 
       - name: Run lint (if available)
