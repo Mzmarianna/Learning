@@ -1,12 +1,12 @@
 # Copilot Instructions for Gamified Tutoring App
 
-This is a Vite React TypeScript application for a gamified tutoring platform (Mz. Marianna's Academy). The application is deployed to Netlify for the front-end and uses Supabase for backend services.
+This is a Vite React TypeScript application for a gamified tutoring platform (Mz. Marianna's Academy). The application is deployed to Vercel for the front-end and uses Supabase for backend services.
 
 ## Project Overview
 
 - **Tech Stack**: React 18, TypeScript, Vite, Tailwind CSS, Radix UI components
 - **Backend**: Supabase (database and edge functions)
-- **Deployment**: Netlify (front-end), Supabase (backend functions)
+- **Deployment**: Vercel (front-end), Supabase (backend functions)
 - **Domain**: www.mzmarianna.com
 - **Business Model**: Multi-payment support (Stripe, PayPal invoices, Zelle, scholarships)
 - **Priority**: Security and payment correctness are critical
@@ -123,7 +123,7 @@ const handlePayment = async (paymentType: PaymentType) => {
 
 ### Development Flow
 - **Install dependencies**: `npm install`
-- **Development server**: `npm run dev` (runs on port 3000)
+- **Development server**: `npm run dev` (runs on port 5173)
 - **Build**: `npm run build` (outputs to `dist/` directory)
 - **Supabase local**: `npm run supabase` (starts local Supabase)
 
@@ -197,9 +197,11 @@ See [DEPLOYMENT.md](../DEPLOYMENT.md) for detailed deployment runbook.
 
 ## Environment Variables
 
-- Environment variables should be added to `.env` (local) and configured in Netlify Dashboard for production
+- Environment variables should be added to `.env.local` (local development) and configured in Vercel Dashboard for production
 - See `.env.example` for reference
 - Required variables include Supabase credentials and API keys
+- Local development: Create `.env.local` file in project root with your credentials
+- Production: Set environment variables in Vercel Dashboard → Project Settings → Environment Variables
 
 ## Documentation
 
