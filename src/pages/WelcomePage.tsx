@@ -3,7 +3,7 @@
  * First step in visitor workflow after showing interest
  */
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Heart, CheckCircle, ArrowRight, FileText, Sparkles } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -11,10 +11,10 @@ import crownLogo from '../assets/8a35650ca022ec6bc649702b5b35c75083424e81.png';
 
 export default function WelcomePage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   
   // Get visitor name from URL params or localStorage (optional)
-  const urlParams = new URLSearchParams(window.location.search);
-  const visitorName = urlParams.get('name') || 'there';
+  const visitorName = searchParams.get('name') || 'there';
 
   const handleQuestionnaireClick = () => {
     // Open Google Form in new tab
