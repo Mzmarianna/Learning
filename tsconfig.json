@@ -35,7 +35,8 @@
         "src",
         "components",
         "lib",
-        "supabase"
+        "supabase",
+        "api"
     ],
     "exclude": [
         "node_modules",

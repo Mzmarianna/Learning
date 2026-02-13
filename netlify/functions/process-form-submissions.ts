@@ -26,8 +26,8 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
 
   try {
     // Import services (dynamic to avoid build issues)
-    const { fetchNewSubmissions } = await import('../../src/lib/services/google-sheets-service');
-    const { processFormSubmission, isSubmissionProcessed } = await import('../../src/lib/services/form-processing-service');
+    const { fetchNewSubmissions } = await import('../../api/_lib/google-sheets-service');
+    const { processFormSubmission, isSubmissionProcessed } = await import('../../api/_lib/form-processing-service');
 
     console.log('Starting form submission processing...');
 

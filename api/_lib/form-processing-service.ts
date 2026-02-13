@@ -3,7 +3,7 @@
  * Processes Google Sheets form submissions and creates student profiles
  */
 
-import { supabase } from '../supabase/client';
+import { supabase } from '../../src/lib/supabase/client';
 import type { FormSubmission } from './google-sheets-service';
 import {
   parseChildNameAndGrade,

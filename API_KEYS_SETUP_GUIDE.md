@@ -49,10 +49,12 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... # Server-side 
 6. Name it: "Learning Kingdom Production"
 7. Copy the key (starts with `re_...`)
 
-**Add to .env:**
+**Add to .env (server-only):**
 ```bash
-VITE_RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
 ```
+
+**Important:** This should NOT have the `VITE_` prefix as it's a server-side secret. It should only be used in Vercel/Netlify serverless functions or Supabase Edge Functions, never in the browser bundle.
 
 **Pricing:**
 - FREE: 100 emails/day (3,000/month)

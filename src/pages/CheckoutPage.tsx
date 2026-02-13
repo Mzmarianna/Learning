@@ -52,14 +52,14 @@ export default function CheckoutPage() {
   }, [planId, navigate]);
 
   const handleStripeCheckout = async () => {
-    setIsProcessing(true);
-
     try {
       if (!currentUser) {
         toast.error('Please log in to complete checkout');
         navigate('/login');
         return;
       }
+
+      setIsProcessing(true);
 
       const stripe = await getStripe();
       if (!stripe) {
