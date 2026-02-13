@@ -4,7 +4,6 @@
  */
 
 import {
-  getPayPalConfig,
   isPayPalConfigured,
   type PayPalSubscriptionRequest,
   type PayPalSubscriptionResponse,

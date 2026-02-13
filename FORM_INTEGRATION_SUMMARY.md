@@ -105,9 +105,9 @@ Output: Student profile ready, assessment scheduled
 
 ### 4. API Endpoint
 
-**File:** `api/process-form-submissions.ts`
+**File:** `netlify/functions/process-form-submissions.ts`
 
-Vercel serverless function that:
+Netlify serverless function that:
 - Authenticates via bearer token (FORM_PROCESSING_SECRET)
 - Fetches new submissions from Google Sheets
 - Processes each submission
@@ -201,8 +201,8 @@ Step-by-step setup instructions:
 └─────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────┐
-│          API: /api/process-form-submissions                  │
-│               (Vercel Serverless Function)                   │
+│    API: /.netlify/functions/process-form-submissions        │
+│               (Netlify Serverless Function)                  │
 │                                                               │
 │  1. Authenticate with FORM_PROCESSING_SECRET                │
 │  2. Call Google Sheets API                                   │

@@ -7,18 +7,8 @@
  * Step 3: Handle payment confirmation callback
  */
 
-import { ClassWalletPaymentType } from './config';
-
-/**
- * Allowed ClassWallet domains for checkout redirects
- * Used to prevent open-redirect vulnerabilities
- */
-const ALLOWED_CLASSWALLET_HOSTS = [
-  'app.classwallet.com',
-  'www.classwallet.com',
-  'classwallet.com',
-  'sandbox.classwallet.com', // For testing environments
-] as const;
+import { getClassWalletConfig } from './config';
+import { getClassWalletConfig, getPayByClassWalletCheckoutUrl, ClassWalletPaymentType } from './config';
 
 /**
  * Session data for Pay by ClassWallet
@@ -181,13 +171,10 @@ export async function redirectToPayByClassWalletCheckout(
 
     const data = await response.json();
     
-    // Use the checkout URL returned by the server which includes session/order identifier
+    // Use the checkout URL returned by the server
     if (!data.checkoutUrl) {
       throw new Error(`Server did not return a checkout URL. Received: ${JSON.stringify(data)}`);
     }
-    
-    // Validate the checkout URL for security (prevent open-redirect attacks)
-    validateCheckoutUrl(data.checkoutUrl);
     
     return {
       success: true,

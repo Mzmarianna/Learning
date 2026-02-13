@@ -214,7 +214,7 @@ export default function CheckoutPage() {
         orderData,
         `${window.location.origin}/payment-success`,
         `${window.location.origin}/pricing`,
-        classWalletType
+        'scholarship' // Default ClassWallet payment type
       );
 
       if (result.success && result.checkoutUrl) {

@@ -9,7 +9,7 @@ This guide explains how to set up the Google Sheets form integration to automati
 1. Google Cloud Project with Sheets API enabled
 2. Service Account with access to the Google Sheet
 3. Supabase database with migration applied
-4. Vercel deployment (for serverless functions)
+4. Netlify deployment (for serverless functions)
 
 ## Setup Steps
 
@@ -55,7 +55,7 @@ This creates:
 
 ### 3. Environment Variables
 
-Add these to your `.env` file and Vercel environment:
+Add these to your `.env` file and Netlify environment:
 
 ```bash
 # Google Sheets API (from service account JSON)
@@ -76,26 +76,27 @@ SUPABASE_SERVICE_KEY=your-supabase-service-key
 openssl rand -base64 32
 ```
 
-### 4. Vercel Configuration
+### 4. Netlify Configuration
 
-Update `vercel.json` to include environment variables:
+Add environment variables via Netlify Dashboard or CLI:
 
-```json
-{
-  "env": {
-    "GOOGLE_SHEETS_CLIENT_EMAIL": "@google-sheets-client-email",
-    "GOOGLE_SHEETS_PRIVATE_KEY": "@google-sheets-private-key",
-    "FORM_PROCESSING_SECRET": "@form-processing-secret"
-  }
-}
-```
+**Via Netlify Dashboard:**
+1. Go to Site Settings → Environment Variables
+2. Add the following variables:
+   - `GOOGLE_SHEETS_CLIENT_EMAIL`
+   - `GOOGLE_SHEETS_PRIVATE_KEY`
+   - `FORM_PROCESSING_SECRET`
+   - `GOOGLE_SHEETS_SPREADSHEET_ID`
+   - `GOOGLE_SHEETS_SHEET_NAME`
 
-Add secrets via Vercel CLI or Dashboard:
+**Via Netlify CLI:**
 
 ```bash
-vercel env add GOOGLE_SHEETS_CLIENT_EMAIL production
-vercel env add GOOGLE_SHEETS_PRIVATE_KEY production
-vercel env add FORM_PROCESSING_SECRET production
+netlify env:set GOOGLE_SHEETS_CLIENT_EMAIL "your-service-account@project.iam.gserviceaccount.com"
+netlify env:set GOOGLE_SHEETS_PRIVATE_KEY "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+netlify env:set FORM_PROCESSING_SECRET "your-random-secret"
+netlify env:set GOOGLE_SHEETS_SPREADSHEET_ID "1MHSmxDUdTrc9SIBDCl_hiHNxqoOHMv19nHeMN1_MVUo"
+netlify env:set GOOGLE_SHEETS_SHEET_NAME "Form Responses 1"
 ```
 
 ### 5. Install Dependencies
@@ -123,27 +124,16 @@ Update `package.json`:
 Call the API endpoint manually:
 
 ```bash
-curl -X POST https://www.mzmarianna.com/api/process-form-submissions \
+curl -X POST https://www.mzmarianna.com/.netlify/functions/process-form-submissions \
   -H "Authorization: Bearer YOUR_FORM_PROCESSING_SECRET" \
   -H "Content-Type: application/json"
 ```
 
 ### Automated Processing (Cron Job)
 
-#### Option 1: Vercel Cron (Recommended)
+#### Option 1: Netlify Scheduled Functions (Recommended)
 
-Update `vercel.json`:
-
-```json
-{
-  "crons": [{
-    "path": "/api/process-form-submissions",
-    "schedule": "0 */2 * * *"
-  }]
-}
-```
-
-This runs every 2 hours.
+Netlify supports scheduled functions using the `@netlify/functions` package. See [Netlify Scheduled Functions documentation](https://docs.netlify.com/functions/scheduled-functions/).
 
 #### Option 2: External Cron Service
 
@@ -167,7 +157,7 @@ jobs:
     steps:
       - name: Call API
         run: |
-          curl -X POST https://www.mzmarianna.com/api/process-form-submissions \
+          curl -X POST https://www.mzmarianna.com/.netlify/functions/process-form-submissions \
             -H "Authorization: Bearer ${{ secrets.FORM_PROCESSING_SECRET }}"
 ```
 
@@ -177,7 +167,7 @@ Add to Google Sheets:
 
 ```javascript
 function onFormSubmit(e) {
-  const url = 'https://www.mzmarianna.com/api/process-form-submissions';
+  const url = 'https://www.mzmarianna.com/.netlify/functions/process-form-submissions';
   const options = {
     method: 'POST',
     headers: {
@@ -222,13 +212,13 @@ ORDER BY a.created_at DESC;
 
 ### Logs
 
-Check Vercel function logs:
+Check Netlify function logs:
 
 ```bash
-vercel logs
+netlify functions:log process-form-submissions
 ```
 
-Or via Vercel Dashboard → Your Project → Deployments → View Logs
+Or via Netlify Dashboard → Functions → View Logs
 
 ## Troubleshooting
 
@@ -305,12 +295,12 @@ LIMIT 5;
 
 ```bash
 # Test endpoint is accessible
-curl https://www.mzmarianna.com/api/process-form-submissions
+curl https://www.mzmarianna.com/.netlify/functions/process-form-submissions
 
 # Should return: 401 Unauthorized (good - auth working)
 
 # Test with auth
-curl -X POST https://www.mzmarianna.com/api/process-form-submissions \
+curl -X POST https://www.mzmarianna.com/.netlify/functions/process-form-submissions \
   -H "Authorization: Bearer YOUR_SECRET" \
   -v
 ```
