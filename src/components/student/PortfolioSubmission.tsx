@@ -116,14 +116,6 @@ export default function PortfolioSubmission({
         const blob = new Blob(chunksRef.current, { type: 'video/webm' });
         setRecordedVideo(blob);
         const url = URL.createObjectURL(blob);
-        
-        // Validate that the URL is a blob URL to prevent XSS
-        if (!url.startsWith('blob:')) {
-          URL.revokeObjectURL(url);
-          toast.error('Invalid video source');
-          return;
-        }
-        
         setVideoPreviewUrl(url);
         
         // Stop all tracks
@@ -185,8 +177,8 @@ export default function PortfolioSubmission({
       }
 
       // Check file type - only allow safe image formats (no SVG to prevent XSS)
-      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-      if (!allowedTypes.includes(file.type.toLowerCase())) {
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
         toast.error('Please select a safe image file (PNG, JPG, or WebP only). SVG files are not allowed for security reasons.');
         return;
       }
