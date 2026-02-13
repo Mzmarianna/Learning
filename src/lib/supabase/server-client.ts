@@ -69,7 +69,10 @@ export function createServerSupabaseClient() {
     },
   });
   
-  console.log('✅ Server-side Supabase client initialized with service role key');
+  // Debug logging (only in development for security)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('✅ Server-side Supabase client initialized with service role key');
+  }
   
   return client;
 }
