@@ -1,6 +1,10 @@
 /**
  * Process Form Submissions API Endpoint
  * Vercel Serverless Function
+ * 
+ * Security:
+ * - Uses service role key for privileged database operations
+ * - Protected by Bearer token authentication
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
@@ -19,10 +23,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Import server-side Supabase client (with service role key)
+    const { getServerSupabaseClient } = await import('../src/lib/supabase/server-client');
+    
     // Import services (dynamic to avoid build issues)
     const { fetchNewSubmissions } = await import('../src/lib/services/google-sheets-service');
     const { processFormSubmission, isSubmissionProcessed } = await import('../src/lib/services/form-processing-service');
 
+    // Get server-side client with service role privileges
+    const supabase = getServerSupabaseClient();
+    
     console.log('Starting form submission processing...');
 
     const lastRowNumber = parseInt(req.query.lastRow as string) || 0;
@@ -47,13 +57,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     for (const submission of newSubmissions) {
       try {
-        const alreadyProcessed = await isSubmissionProcessed(submission.rowNumber);
+        const alreadyProcessed = await isSubmissionProcessed(supabase, submission.rowNumber);
         if (alreadyProcessed) {
           results.skipped++;
           continue;
         }
 
-        const result = await processFormSubmission(submission);
+        const result = await processFormSubmission(supabase, submission);
         
         if (result.success) {
           results.processed++;
