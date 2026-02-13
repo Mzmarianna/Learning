@@ -44,7 +44,7 @@ export function createServerClient() {
   }
 
   // Validate that the service role key looks correct
-  if (serviceRoleKey.startsWith('eyJ') === false) {
+  if (!serviceRoleKey.startsWith('eyJ')) {
     throw new Error(
       'SUPABASE_SERVICE_ROLE_KEY does not appear to be a valid JWT token. ' +
       'Please check your environment variables.'
@@ -76,7 +76,7 @@ export function validateServerEnvironment(): void {
 
   if (!serviceRoleKey) {
     errors.push('SUPABASE_SERVICE_ROLE_KEY is not set');
-  } else if (serviceRoleKey.startsWith('eyJ') === false) {
+  } else if (!serviceRoleKey.startsWith('eyJ')) {
     errors.push('SUPABASE_SERVICE_ROLE_KEY does not appear to be a valid JWT token');
   }
 
