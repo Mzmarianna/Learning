@@ -27,12 +27,12 @@ Your Learning Kingdom platform now has:
 👉 **[API_KEYS_SETUP_GUIDE.md](./API_KEYS_SETUP_GUIDE.md)**
 - Step-by-step for Resend
 - Step-by-step for Supabase
-- Step-by-step for Netlify
+- Step-by-step for Vercel
 - Security best practices
 - *Time needed: 15 minutes*
 
 ### 🚀 Ready to Deploy?
-👉 **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)**
+👉 **[VERCEL_DEPLOYMENT_GUIDE.md](./VERCEL_DEPLOYMENT_GUIDE.md)**
 - 15-minute quick deploy
 - Complete walkthrough
 - Custom domain setup
@@ -73,12 +73,12 @@ npm run dev
 ```
 
 ### Step 3: Deploy (10 min)
-1. Connect GitHub to Netlify
+1. Connect GitHub to Vercel
 2. Add environment variables
 3. Click "Deploy"
 4. Test live site!
 
-**Full instructions**: See `DEPLOYMENT_GUIDE.md`
+**Full instructions**: See `VERCEL_DEPLOYMENT_GUIDE.md`
 
 ---
 
@@ -98,16 +98,16 @@ Placement Quiz → Enrollment!
 ## 💰 Costs
 
 ### Free Tier (Perfect for Launch)
-- Netlify: $0/month (100 GB bandwidth)
+- Vercel: $0/month (100 GB bandwidth)
 - Supabase: $0/month (500 MB database)
 - Resend: $0/month (100 emails/day)
 - **Total: $0/month**
 
 ### When You Scale (100+ users)
-- Netlify Pro: $19/month
+- Vercel Pro: $20/month
 - Supabase Pro: $25/month
 - Resend: $20/month
-- **Total: ~$64/month**
+- **Total: ~$65/month**
 
 ---
 
@@ -116,15 +116,15 @@ Placement Quiz → Enrollment!
 ### Common Questions:
 - **"Where do I start?"** → Read `WORK_COMPLETED_SUMMARY.md`
 - **"How do I get API keys?"** → Read `API_KEYS_SETUP_GUIDE.md`
-- **"How do I deploy?"** → Read `DEPLOYMENT_GUIDE.md`
+- **"How do I deploy?"** → Read `VERCEL_DEPLOYMENT_GUIDE.md`
 - **"Is it secure?"** → Yes! See `FINAL_STATUS_REPORT.md`
-- **"What features work?"** → See `OPTIMIZATION_STATUS.md`
+- **"What features work?"** → See `PLATFORM_SUMMARY.md`
 
 ### Stuck?
 1. Check the documentation (it's comprehensive!)
-2. Check service dashboards (Resend, Supabase, Netlify)
+2. Check service dashboards (Resend, Supabase, Vercel)
 3. Check browser console for errors
-4. Check Netlify deploy logs
+4. Check Vercel deploy logs
 
 ---
 
@@ -136,7 +136,7 @@ Placement Quiz → Enrollment!
 - ✅ Framer Motion (smooth animations)
 - ✅ Supabase (scalable database)
 - ✅ Resend (reliable emails)
-- ✅ Netlify (fast hosting)
+- ✅ Vercel (fast hosting & deployment)
 
 ### Quality:
 - ✅ 0 security vulnerabilities
@@ -182,7 +182,7 @@ npm run build       # Build for production
 
 1. **Read**: `WORK_COMPLETED_SUMMARY.md` (5 min)
 2. **Setup**: `API_KEYS_SETUP_GUIDE.md` (15 min)
-3. **Deploy**: `DEPLOYMENT_GUIDE.md` (10 min)
+3. **Deploy**: `VERCEL_DEPLOYMENT_GUIDE.md` (10 min)
 
 **Total time to live**: 30 minutes
 

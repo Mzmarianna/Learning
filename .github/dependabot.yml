@@ -1,0 +1,51 @@
+# Dependabot configuration for automated dependency updates
+# This helps keep dependencies secure and up-to-date
+
+version: 2
+updates:
+  # Enable npm dependency updates
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    # Limit the number of open pull requests for npm dependencies
+    open-pull-requests-limit: 10
+    # Group minor and patch updates together
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+    # Add labels for easy filtering
+    labels:
+      - "dependencies"
+      - "automated"
+    # Assign reviewers (optional - adjust as needed)
+    reviewers:
+      - "Mzmarianna"
+    # Security updates have higher priority
+    commit-message:
+      prefix: "⬆️"
+      include: "scope"
+
+  # Enable GitHub Actions workflow updates
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "⬆️"

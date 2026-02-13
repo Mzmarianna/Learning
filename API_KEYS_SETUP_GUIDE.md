@@ -6,7 +6,7 @@ This guide will help you set up all the necessary API keys and credentials for y
 
 All sensitive credentials should be stored in:
 - `.env` file (local development) - **NEVER commit this file**
-- Netlify/Vercel environment variables (production)
+- Vercel/Supabase environment variables (production)
 - Supabase dashboard (database secrets)
 
 ---
@@ -68,12 +68,12 @@ VITE_RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
 
 ---
 
-### 3. Netlify (Deployment & Hosting) ✅ REQUIRED FOR DEPLOYMENT
+### 3. Vercel (Deployment & Hosting) ✅ REQUIRED FOR DEPLOYMENT
 
 **What it's for:** Website hosting, CI/CD, serverless functions
 
 **How to get it:**
-1. Go to https://netlify.com
+1. Go to https://vercel.com
 2. Sign up/login with: **mariannav920@gmail.com**
 3. Connect your GitHub repository
 4. Go to Site Settings → Build & Deploy → Environment Variables
@@ -183,7 +183,7 @@ Visit http://localhost:5173 and test:
 ## 🔒 Security Best Practices
 
 ### ✅ DO:
-- Store keys in `.env` (local) and Netlify/Vercel (production)
+- Store keys in `.env.local` (local) and Vercel Dashboard (production)
 - Use different keys for development and production
 - Rotate keys if they're exposed
 - Use environment variables in code: `import.meta.env.VITE_SUPABASE_URL`
@@ -262,8 +262,8 @@ await sendEbookDeliveryEmail({
 3. Check Supabase dashboard → Logs for errors
 
 ### Build failing?
-1. Ensure all `VITE_*` variables are set in Netlify
-2. Check Netlify deploy logs
+1. Ensure all `VITE_*` variables are set in Vercel
+2. Check Vercel deploy logs
 3. Verify environment variables don't have trailing spaces
 
 ---
@@ -273,12 +273,12 @@ await sendEbookDeliveryEmail({
 1. **Check your Gmail** (mariannav920@gmail.com) for:
    - Supabase welcome email
    - Resend verification email
-   - Netlify notifications
+   - Vercel notifications
 
 2. **Check documentation:**
    - Supabase: https://supabase.com/docs
    - Resend: https://resend.com/docs
-   - Netlify: https://docs.netlify.com
+   - Vercel: https://vercel.com/docs
 
 3. **Support contacts:**
    - Supabase: https://supabase.com/support
@@ -295,8 +295,8 @@ Before going live, verify:
 - [ ] Test email sent successfully
 - [ ] E-book link works in email
 - [ ] Lead captured in Supabase `email_leads` table
-- [ ] Netlify deployment connected to GitHub
-- [ ] All environment variables added to Netlify
+- [ ] Vercel deployment connected to GitHub
+- [ ] All environment variables added to Vercel
 - [ ] Domain configured (if using custom domain)
 - [ ] SSL certificate active
 - [ ] Emails not going to spam

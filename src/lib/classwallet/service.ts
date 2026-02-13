@@ -26,8 +26,6 @@ export async function createClassWalletPayment(
   }
 
   try {
-    const config = getClassWalletConfig();
-
     // Call the backend API to create ClassWallet payment
     const response = await fetch('/api/classwallet-establish-session', {
       method: 'POST',

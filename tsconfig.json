@@ -37,6 +37,11 @@
         "lib",
         "supabase"
     ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "src/public/_redirects"
+    ],
     "references": [
         {
             "path": "./tsconfig.node.json"

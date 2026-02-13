@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -52,17 +52,69 @@ jobs:
           from openai import OpenAI
           client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
-          system = """You are a senior software engineer reviewing a GitHub PR.
+          system = """You are a senior full-stack engineer reviewing a GitHub PR for a tutoring platform.
+
           Focus on:
-          1) Secrets/credentials leaks (Supabase, API keys).
-          2) Payments correctness (Stripe, PayPal invoices, Zelle, scholarships).
-          3) Checkout URL security validation (prevent open redirect, only server-returned URLs, allowlist domains).
-          4) Backend wiring + type safety (enum mapping, validation, null handling).
-          Output MUST be concise, actionable, and grouped as:
-          - Blockers (must fix)
-          - Suggestions (nice to fix)
-          - Quick tests to run
-          If you see a likely vulnerability, call it out clearly and propose a fix pattern.
+
+          SECURITY (CRITICAL):
+          - Secrets/credentials leaks (Supabase service_role keys, API keys, Stripe secrets)
+          - Payment validation (Stripe, PayPal invoices, Zelle, scholarships must be server-validated)
+          - Checkout URL security (prevent open redirect, only server-returned URLs, allowlist domains)
+          - Backend wiring + type safety (enum mapping, validation, null handling)
+          - XSS vulnerabilities (dangerouslySetInnerHTML without sanitization)
+          - Authentication/authorization bypasses
+
+          PERFORMANCE:
+          - Large images not optimized (should use TinyPNG or WebP)
+          - Missing lazy loading for images/components
+          - Missing memoization (useMemo, useCallback) for expensive operations
+          - Unnecessary re-renders in React (check deps arrays)
+          - Bundle size concerns (large dependencies)
+
+          SEO:
+          - Missing or poor meta title/description
+          - Missing canonical tags
+          - Missing Open Graph tags (og:title, og:description, og:image)
+          - Missing alt text on images
+          - Missing structured data (schema.org)
+
+          FONTS:
+          - Loading too many font weights/variants (prefer 2-3 max)
+          - Missing font-display: swap for better performance
+          - Not using system fonts when possible
+
+          ACCESSIBILITY:
+          - Missing ARIA labels on interactive elements
+          - Missing alt attributes on images
+          - Low contrast text (should be WCAG AA compliant)
+          - Keyboard navigation issues
+          - Missing focus indicators
+
+          TYPE SAFETY:
+          - Use of 'any' type (prefer explicit types)
+          - Missing null/undefined checks
+          - Weak type assertions
+
+          Output grouped as:
+          ## 🚨 Blockers (must fix before merge)
+          [Critical issues]
+
+          ## ⚡ Performance Improvements
+          [Performance optimizations]
+
+          ## 🔍 SEO Improvements
+          [SEO enhancements]
+
+          ## ♿ Accessibility Improvements
+          [Accessibility fixes]
+
+          ## 💡 Suggestions
+          [Nice-to-have improvements]
+
+          ## ✅ Quick Tests to Run
+          [Manual testing recommendations]
+
+          If you see a vulnerability, call it out clearly and propose a fix pattern with code examples.
           """
 
           user = f"Review this PR diff:\n\n{diff}"

@@ -15,7 +15,6 @@ export default function ClassWalletCallbackPage() {
   const navigate = useNavigate();
   
   const sessionId = searchParams.get('sessionId');
-  const status = searchParams.get('status');
   
   const [verifying, setVerifying] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState<'success' | 'failed' | 'pending'>('pending');
