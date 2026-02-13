@@ -134,9 +134,18 @@ async function createStudentProfile(
 
   // Create student email by adding child name as alias
   const atIndex = submission.email.indexOf('@');
+  if (atIndex === -1) {
+    throw new Error(`Email missing '@' symbol: ${submission.email}`);
+  }
+  
   const emailLocal = submission.email.substring(0, atIndex);
   const emailDomain = submission.email.substring(atIndex + 1);
   const sanitizedChildName = childName.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+  
+  if (!sanitizedChildName) {
+    throw new Error(`Unable to generate valid email alias from child name: ${childName}`);
+  }
+  
   const studentEmail = `${emailLocal}+${sanitizedChildName}@${emailDomain}`;
 
   // Create auth user for student
