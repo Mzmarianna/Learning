@@ -7,8 +7,18 @@
  * Step 3: Handle payment confirmation callback
  */
 
-import { getClassWalletConfig } from './config';
-import { getClassWalletConfig, getPayByClassWalletCheckoutUrl, ClassWalletPaymentType } from './config';
+import { ClassWalletPaymentType } from './config';
+
+/**
+ * Allowed ClassWallet domains for checkout redirects
+ * Used to prevent open-redirect vulnerabilities
+ */
+const ALLOWED_CLASSWALLET_HOSTS = [
+  'app.classwallet.com',
+  'www.classwallet.com',
+  'classwallet.com',
+  'sandbox.classwallet.com', // For testing environments
+] as const;
 
 /**
  * Session data for Pay by ClassWallet
@@ -51,6 +61,49 @@ export interface PayByClassWalletConfirmation {
   status: 'approved' | 'declined' | 'pending';
   amount: number;
   timestamp: string;
+}
+
+/**
+ * Validates that a checkout URL is safe to redirect to
+ * Prevents open-redirect vulnerabilities by ensuring URL points to ClassWallet
+ */
+function validateCheckoutUrl(url: string): void {
+  // Check it's a non-empty string
+  if (!url || typeof url !== 'string' || url.trim().length === 0) {
+    throw new Error('Checkout URL must be a non-empty string');
+  }
+
+  // Parse and validate URL
+  let parsedUrl: URL;
+  try {
+    parsedUrl = new URL(url);
+  } catch (error) {
+    throw new Error('Checkout URL is not a valid URL');
+  }
+
+  // Ensure HTTPS protocol
+  if (parsedUrl.protocol !== 'https:') {
+    throw new Error('Checkout URL must use HTTPS protocol');
+  }
+
+  // Validate hostname is a ClassWallet domain or proper subdomain
+  const hostname = parsedUrl.hostname.toLowerCase();
+  const isAllowed = ALLOWED_CLASSWALLET_HOSTS.some(host => {
+    // Exact match
+    if (hostname === host) {
+      return true;
+    }
+    // Proper subdomain (must end with ".host" not just contain host)
+    // This prevents "malicious-classwallet.com" from matching "classwallet.com"
+    if (hostname.endsWith('.' + host)) {
+      return true;
+    }
+    return false;
+  });
+
+  if (!isAllowed) {
+    throw new Error(`Checkout URL must point to a ClassWallet domain (allowed: ${ALLOWED_CLASSWALLET_HOSTS.join(', ')})`);
+  }
 }
 
 /**
@@ -128,10 +181,13 @@ export async function redirectToPayByClassWalletCheckout(
 
     const data = await response.json();
     
-    // Use the checkout URL returned by the server
+    // Use the checkout URL returned by the server which includes session/order identifier
     if (!data.checkoutUrl) {
       throw new Error(`Server did not return a checkout URL. Received: ${JSON.stringify(data)}`);
     }
+    
+    // Validate the checkout URL for security (prevent open-redirect attacks)
+    validateCheckoutUrl(data.checkoutUrl);
     
     return {
       success: true,
