@@ -6,8 +6,9 @@
 import { google } from 'googleapis';
 
 // Google Sheets configuration
-const SPREADSHEET_ID = '1MHSmxDUdTrc9SIBDCl_hiHNxqoOHMv19nHeMN1_MVUo';
-const SHEET_NAME = 'Form Responses 1';
+// These values should be set in environment variables for security and flexibility
+const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || '';
+const SHEET_NAME = process.env.GOOGLE_SHEETS_SHEET_NAME || 'Form Responses 1';
 const RANGE = `${SHEET_NAME}!A:Q`; // Columns A through Q
 
 // Column mapping (0-indexed)
