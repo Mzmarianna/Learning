@@ -84,6 +84,11 @@ export async function saveFormSubmission(
 
 /**
  * Create parent profile if doesn't exist
+ * 
+ * @param supabase - Supabase client instance (should be server-side client for privileged operations)
+ * @param email - Parent's email address
+ * @param name - Parent's display name
+ * @returns Parent profile (existing or newly created)
  */
 async function createOrGetParentProfile(
   supabase: SupabaseClient<Database>,
@@ -126,6 +131,18 @@ async function createOrGetParentProfile(
 
 /**
  * Create student profile from form submission
+ * 
+ * Creates a complete student profile including:
+ * - Profile record with role 'student'
+ * - Student-specific profile data (tier, XP, gems, preferences)
+ * - Parent-student relationship
+ * - Student intake record with all form data
+ * 
+ * @param supabase - Supabase client instance (should be server-side client for privileged operations)
+ * @param submission - Form submission data from Google Sheets
+ * @param parentId - ID of the parent profile to link to
+ * @param formSubmissionId - ID of the saved form submission record
+ * @returns Newly created student profile
  */
 async function createStudentProfile(
   supabase: SupabaseClient<Database>,
@@ -218,6 +235,15 @@ async function createStudentProfile(
 
 /**
  * Create initial assessment record
+ * 
+ * Creates an 'initial' assessment record with status 'scheduled'.
+ * This tracks that the student needs to complete their initial assessment.
+ * 
+ * @param supabase - Supabase client instance (should be server-side client for privileged operations)
+ * @param studentId - ID of the student profile
+ * @param formSubmissionId - ID of the form submission that triggered this assessment
+ * @param grade - Grade level assessed (from form submission)
+ * @returns Newly created assessment record
  */
 async function createAssessmentRecord(
   supabase: SupabaseClient<Database>,
