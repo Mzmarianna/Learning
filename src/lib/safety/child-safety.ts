@@ -385,22 +385,17 @@ export async function checkSessionLimits(studentId: string): Promise<{
 
 /**
  * Sanitize user-generated content for display
+ * Note: The returned string is safe to render directly in React as text.
+ * React will perform the necessary entity escaping automatically.
  */
 export function sanitizeContent(content: string): string {
-  // Use a robust HTML sanitizer to remove all tags and attributes
-  let sanitized = sanitizeHtml(content, {
+  // Use a robust HTML sanitizer to remove all tags and attributes.
+  // The returned string is safe to render directly in React as text,
+  // since React will perform the necessary entity escaping.
+  const sanitized = sanitizeHtml(content, {
     allowedTags: [],
     allowedAttributes: {},
   });
-
-  // Escape special characters to prevent XSS when rendering in HTML
-  sanitized = sanitized
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;');
 
   return sanitized;
 }
