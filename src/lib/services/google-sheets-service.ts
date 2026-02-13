@@ -5,11 +5,27 @@
 
 import { google } from 'googleapis';
 
-// Google Sheets configuration
-// These values should be set in environment variables for security and flexibility
-const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || '';
-const SHEET_NAME = process.env.GOOGLE_SHEETS_SHEET_NAME || 'Form Responses 1';
-const RANGE = `${SHEET_NAME}!A:Q`; // Columns A through Q
+// Google Sheets configuration (resolved lazily to avoid top-level process.env usage)
+function getSheetsConfig() {
+  const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME;
+
+  if (!spreadsheetId) {
+    throw new Error('GOOGLE_SHEETS_SPREADSHEET_ID environment variable is not set.');
+  }
+
+  if (!sheetName) {
+    throw new Error('GOOGLE_SHEETS_SHEET_NAME environment variable is not set.');
+  }
+
+  const range = `${sheetName}!A:Q`; // Columns A through Q
+
+  return {
+    spreadsheetId,
+    sheetName,
+    range,
+  };
+}
 
 // Column mapping (0-indexed)
 const COLUMNS = {
@@ -104,10 +120,11 @@ function parsePrograms(value: string): string[] {
 export async function fetchFormSubmissions(): Promise<FormSubmission[]> {
   try {
     const sheets = getGoogleSheetsClient();
+    const config = getSheetsConfig();
     
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: RANGE,
+      spreadsheetId: config.spreadsheetId,
+      range: config.range,
     });
 
     const rows = response.data.values;

@@ -6,8 +6,8 @@ ENVIRONMENT=${1:-production}
 echo "Building client for ${ENVIRONMENT}..."
 npm run build
 
-echo "Deploying to Netlify..."
-netlify deploy --prod
+echo "Deploying to Vercel..."
+vercel deploy --prod
 
 echo "Deploying Supabase functions..."
 supabase functions deploy server

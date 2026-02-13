@@ -12,7 +12,7 @@
   - **📖 Complete Setup** → [VERCEL_DEPLOYMENT_GUIDE.md](./VERCEL_DEPLOYMENT_GUIDE.md) - Full deployment guide
   - **🔑 API Keys Help** → [ENVIRONMENT_VARIABLES_GUIDE.md](./ENVIRONMENT_VARIABLES_GUIDE.md) - Environment setup
   - **📚 What's Included** → [LEARNING_FILES_OVERVIEW.md](./LEARNING_FILES_OVERVIEW.md) - All features & files
-  - **✅ Start Here** → [START_HERE_VERCEL.md](./START_HERE_VERCEL.md) - Choose the right guide for you
+  - **✅ Start Here** → [START_HERE.md](./START_HERE.md) - Choose the right guide for you
 
   ### ✅ What's Ready:
   - Complete Learning Kingdom application with gamification
@@ -22,7 +22,7 @@
   - Build tested and verified
   - Full documentation included
 
-  **→ Start with [START_HERE_VERCEL.md](./START_HERE_VERCEL.md) to begin deployment!**
+  **→ Start with [START_HERE.md](./START_HERE.md) to begin deployment!**
 
   ---
 
@@ -37,19 +37,18 @@
   **Want to make your site stunning with beautiful images?** We've created comprehensive guides for you!
 
   ### 🎯 NEW: Have Images to Upload Right Now?
-  - **⚡ START HERE** → [START_HERE_UPLOAD.md](./START_HERE_UPLOAD.md) - Quick answer to "How do I upload?"
+  - **⚡ START HERE** → [HOW_TO_UPLOAD_IMAGES.md](./HOW_TO_UPLOAD_IMAGES.md) - Quick answer to "How do I upload?"
   - **📤 Complete Upload Guide** → [HOW_TO_UPLOAD_IMAGES.md](./HOW_TO_UPLOAD_IMAGES.md) - From computer or Google Drive
   - **👁️ Visual Workflow** → [IMAGE_UPLOAD_WORKFLOW.md](./IMAGE_UPLOAD_WORKFLOW.md) - See the process step-by-step
 
   ### 🚀 Getting Started (Pick Based on What You Need):
-  - **⚡ First time adding images?** → [QUICK_START_IMAGES.md](./QUICK_START_IMAGES.md) - 5 minutes to first image!
+  - **⚡ First time adding images?** → [VISUAL_IMAGE_GUIDE.md](./VISUAL_IMAGE_GUIDE.md) - 5 minutes to first image!
   - **👁️ Visual learner?** → [VISUAL_IMAGE_GUIDE.md](./VISUAL_IMAGE_GUIDE.md) - Diagrams and workflows
   - **📖 Want all the details?** → [ADDING_GRAPHICS_AND_PICTURES.md](./ADDING_GRAPHICS_AND_PICTURES.md) - Complete technical guide
 
   ### 📚 Additional Resources:
   - **✅ Making the whole site beautiful?** → [STUNNING_SITE_CHECKLIST.md](./STUNNING_SITE_CHECKLIST.md) - Quality checklist
-  - **💻 Learn by example?** → [EXAMPLE_GALLERY_PAGE.tsx](./EXAMPLE_GALLERY_PAGE.tsx) - Working code examples
-  - **📋 Overview of all docs** → [GRAPHICS_DOCUMENTATION_SUMMARY.md](./GRAPHICS_DOCUMENTATION_SUMMARY.md)
+  - **📋 Overview of all docs** → [VISUAL_IMAGE_GUIDE.md](./VISUAL_IMAGE_GUIDE.md)
 
   ### ⚡ Quick Workflow:
   ```

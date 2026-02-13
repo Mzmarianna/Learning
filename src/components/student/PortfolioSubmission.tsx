@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Video, Image, FileText, Upload, Check, X, Camera, StopCircle, Play } from 'lucide-react';
 import { toast } from 'sonner';
+import DOMPurify from 'dompurify';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -48,6 +49,16 @@ export default function PortfolioSubmission({
   const chunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Sanitize URL to prevent XSS attacks
+  const sanitizeUrl = (url: string | null): string | undefined => {
+    if (!url) return undefined;
+    // Only allow blob: and https: URLs
+    if (url.startsWith('blob:') || url.startsWith('https:')) {
+      return DOMPurify.sanitize(url, { ALLOWED_URI_REGEXP: /^(?:https:|blob:)/ });
+    }
+    return undefined;
+  };
 
   // Cleanup on unmount
   useEffect(() => {
@@ -319,7 +330,7 @@ export default function PortfolioSubmission({
               autoPlay
               playsInline
               muted={isRecording}
-              src={videoPreviewUrl || undefined}
+              src={sanitizeUrl(videoPreviewUrl)}
               className="w-full h-full object-cover"
             />
 
@@ -428,9 +439,9 @@ export default function PortfolioSubmission({
           ) : (
             <div className="space-y-4">
               <div className="relative rounded-xl overflow-hidden border-2 border-calm-border">
-                {imagePreviewUrl && imagePreviewUrl.startsWith('blob:') && (
+                {imagePreviewUrl && (
                   <img
-                    src={imagePreviewUrl}
+                    src={sanitizeUrl(imagePreviewUrl)}
                     alt="Preview"
                     className="w-full h-auto"
                   />
