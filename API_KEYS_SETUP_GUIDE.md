@@ -51,8 +51,10 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... # Server-side 
 
 **Add to .env:**
 ```bash
-VITE_RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
 ```
+
+**Important:** This key must only be used server-side (in Netlify/Vercel functions or Supabase Edge Functions). Never expose it to client-side code with the `VITE_` prefix.
 
 **Pricing:**
 - FREE: 100 emails/day (3,000/month)

@@ -8,7 +8,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CreditCard, Lock, ArrowLeft, CheckCircle, Wallet, DollarSign } from 'lucide-react';
 import { PRICING_PLANS, ANNUAL_PRICING_PLANS, formatPrice, getStripe } from '../lib/stripe/config';
-import { isClassWalletConfigured } from '../lib/classwallet/config';
+import { isClassWalletConfigured, ClassWalletPaymentType } from '../lib/classwallet/config';
 import { createPayByClassWalletPayment } from '../lib/classwallet/payby-service';
 import { isPayPalConfigured, getPayPalConfig } from '../lib/paypal/config';
 import { createPayPalSubscription } from '../lib/paypal/service';
@@ -27,6 +27,7 @@ export default function CheckoutPage() {
 
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'paypal' | 'classwallet'>('stripe');
+  const [classWalletType, setClassWalletType] = useState<ClassWalletPaymentType>(ClassWalletPaymentType.SCHOLARSHIP);
   const [isProcessing, setIsProcessing] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
 
@@ -52,14 +53,14 @@ export default function CheckoutPage() {
   }, [planId, navigate]);
 
   const handleStripeCheckout = async () => {
-    setIsProcessing(true);
-
     try {
       if (!currentUser) {
         toast.error('Please log in to complete checkout');
         navigate('/login');
         return;
       }
+
+      setIsProcessing(true);
 
       const stripe = await getStripe();
       if (!stripe) {
@@ -110,14 +111,14 @@ export default function CheckoutPage() {
   };
 
   const handlePayPalCheckout = async () => {
-    setIsProcessing(true);
-
     try {
       if (!currentUser) {
         toast.error('Please log in to complete checkout');
         navigate('/login');
         return;
       }
+
+      setIsProcessing(true);
 
       if (!isPayPalConfigured()) {
         toast.error('PayPal is not configured yet. Please use Stripe or ClassWallet.');
@@ -166,14 +167,14 @@ export default function CheckoutPage() {
   };
 
   const handleClassWalletCheckout = async () => {
-    setIsProcessing(true);
-
     try {
       if (!currentUser) {
         toast.error('Please log in to complete checkout');
         navigate('/login');
         return;
       }
+
+      setIsProcessing(true);
 
       if (!isClassWalletConfigured()) {
         toast.error('ClassWallet is not configured yet. Please use Stripe or PayPal.');
@@ -435,6 +436,65 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                 </button>
+
+                {/* ClassWallet Payment Type Selector - shown when ClassWallet is selected */}
+                {paymentMethod === 'classwallet' && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="ml-4 pl-4 border-l-2 border-green-300 space-y-2"
+                  >
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Select Payment Type:</p>
+                    
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="classWalletType"
+                        value={ClassWalletPaymentType.SCHOLARSHIP}
+                        checked={classWalletType === ClassWalletPaymentType.SCHOLARSHIP}
+                        onChange={(e) => setClassWalletType(e.target.value as ClassWalletPaymentType)}
+                        className="w-4 h-4 text-green-600"
+                      />
+                      <span className="text-sm text-gray-700">Scholarship</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="classWalletType"
+                        value={ClassWalletPaymentType.ESA}
+                        checked={classWalletType === ClassWalletPaymentType.ESA}
+                        onChange={(e) => setClassWalletType(e.target.value as ClassWalletPaymentType)}
+                        className="w-4 h-4 text-green-600"
+                      />
+                      <span className="text-sm text-gray-700">Education Savings Account (ESA)</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="classWalletType"
+                        value={ClassWalletPaymentType.REIMBURSEMENT}
+                        checked={classWalletType === ClassWalletPaymentType.REIMBURSEMENT}
+                        onChange={(e) => setClassWalletType(e.target.value as ClassWalletPaymentType)}
+                        className="w-4 h-4 text-green-600"
+                      />
+                      <span className="text-sm text-gray-700">Reimbursement</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="classWalletType"
+                        value={ClassWalletPaymentType.EMPOWERMENT}
+                        checked={classWalletType === ClassWalletPaymentType.EMPOWERMENT}
+                        onChange={(e) => setClassWalletType(e.target.value as ClassWalletPaymentType)}
+                        className="w-4 h-4 text-green-600"
+                      />
+                      <span className="text-sm text-gray-700">Empowerment Scholarship</span>
+                    </label>
+                  </motion.div>
+                )}
               </div>
 
               {/* Checkout Button */}

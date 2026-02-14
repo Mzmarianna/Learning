@@ -7,8 +7,7 @@
  * Step 3: Handle payment confirmation callback
  */
 
-import { getClassWalletConfig } from './config';
-import { getClassWalletConfig, getPayByClassWalletCheckoutUrl, ClassWalletPaymentType } from './config';
+import { getClassWalletConfig, ClassWalletPaymentType } from './config';
 
 /**
  * Session data for Pay by ClassWallet
@@ -98,6 +97,51 @@ export async function establishPayByClassWalletSession(
 }
 
 /**
+ * Validate checkout URL for security
+ * Ensures the URL is valid, uses HTTPS, and comes from an allowed ClassWallet domain
+ */
+function validateCheckoutUrl(url: string): void {
+  // Check URL is non-empty string
+  if (!url || typeof url !== 'string' || url.trim() === '') {
+    throw new Error('Checkout URL must be a non-empty string');
+  }
+
+  let parsedUrl: URL;
+  try {
+    parsedUrl = new URL(url);
+  } catch (error) {
+    throw new Error('Checkout URL is not a valid URL format');
+  }
+
+  // Enforce HTTPS only
+  if (parsedUrl.protocol !== 'https:') {
+    throw new Error('Checkout URL must use HTTPS protocol');
+  }
+
+  // Define allowed ClassWallet domains
+  const allowedDomains = [
+    'app.classwallet.com',
+    'www.classwallet.com',
+    'classwallet.com',
+    'sandbox.classwallet.com',
+  ];
+
+  // Validate domain against allow-list
+  const hostname = parsedUrl.hostname.toLowerCase();
+  const isAllowed = allowedDomains.some(domain => {
+    // Exact match or subdomain match
+    return hostname === domain || hostname.endsWith('.' + domain);
+  });
+
+  if (!isAllowed) {
+    throw new Error(
+      `Checkout URL domain "${hostname}" is not in the allowed list. ` +
+      `Allowed domains: ${allowedDomains.join(', ')}`
+    );
+  }
+}
+
+/**
  * Step 2: Redirect to ClassWallet checkout with order data
  * Constructs the checkout URL and prepares order data for ClassWallet
  */
@@ -132,6 +176,9 @@ export async function redirectToPayByClassWalletCheckout(
     if (!data.checkoutUrl) {
       throw new Error(`Server did not return a checkout URL. Received: ${JSON.stringify(data)}`);
     }
+    
+    // Validate the checkout URL for security
+    validateCheckoutUrl(data.checkoutUrl);
     
     return {
       success: true,
