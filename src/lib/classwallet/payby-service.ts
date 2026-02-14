@@ -75,6 +75,7 @@ export async function establishPayByClassWalletSession(
         userName,
         paymentType,
         userPhone,
+        paymentType,
       }),
     });
 
